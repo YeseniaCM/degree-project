@@ -4,14 +4,38 @@ GET http://localhost:3000/api/redirects
 GET http://localhost:3000/api/users
 ###
 
+GET http://localhost:3000/api/users/677006fffc8d5b7c5950ac28
+###
+
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "username": "Test",
-  "email": "test@example.com",
-  "password": "test",
-  "fullName": "test testsson"
+  "action": "register",
+  "username": "Anton",
+  "email": "Anton@mail.com",
+  "password": "anton",
+  "fullName": "anton testsson"
 }
 
+# {
+#   "action": "login",
+#   "email": "Anton@mail.com",
+#   "password": "anton"
+# }
 ###
+// Måste göras
+DELETE http://localhost:3000/api/users/Lägg-till-id:nr
+Content-Type: application/json
+
+{
+"_id": "Lägg till id:nr"
+}
+###
+
+PUT http://localhost:3000/api/users/Lägg-till-id:nr
+Content-Type: application/json
+
+{
+"email": "janedoe@example.com", "password": "hashedpassword456"
+}

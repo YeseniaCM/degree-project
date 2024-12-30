@@ -1,18 +1,12 @@
-import clientPromise from "@/lib/mongodb";
-import { NextRequest, NextResponse } from "next/server";
-import { IUsers, IUsersResponse } from "./IUser";
+import { getAllUsers, getUserByEmail, createUser } from "@/lib/userdb";
+import { NextResponse, NextRequest } from "next/server";
+import { IUsers } from "./IUser";
 
 export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db("users");
+    const users = await getAllUsers();
 
-    const users: IUsers[] = await db
-      .collection<IUsers>("users")
-      .find({})
-      .toArray();
-
-    const response: IUsersResponse[] = users.map((doc) => ({
+    const response = users.map((doc) => ({
       _id: doc._id?.toString() || "",
       username: doc.username,
       email: doc.email,
@@ -26,7 +20,7 @@ export async function GET() {
   } catch (error) {
     console.error("Fel vid anslutning till MongoDB:", error);
     return NextResponse.json(
-      { error: "Kan inte ansluta till MonogDB" },
+      { error: "Kan inte ansluta till MongoDB" },
       { status: 500 }
     );
   }
@@ -34,31 +28,74 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const client = await clientPromise;
-    const db = client.db("users");
-    const body: Omit<IUsers, "_id"> = await req.json();
+    const {
+      action,
+      username,
+      email,
+      password,
+      fullName,
+    }: {
+      action: string;
+      username?: string;
+      email: string;
+      password: string;
+      fullName?: string;
+    } = await req.json();
 
-    if (!body.username || !body.email || !body.password || !body.fullName) {
-      return NextResponse.json(
-        { error: "Saknar i fyllda fält" },
-        { status: 400 }
-      );
+    if (action === "register") {
+      if (!username || !email || !password || !fullName) {
+        return NextResponse.json(
+          { error: "Saknar i fyllda fält" },
+          { status: 400 }
+        );
+      }
+
+      const existingUser = await getUserByEmail(email);
+      if (existingUser) {
+        return NextResponse.json(
+          { error: "Användaren finns redan" },
+          { status: 400 }
+        );
+      }
+
+      const newUser: IUsers = {
+        username,
+        email,
+        password,
+        fullName,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+      };
+
+      const result = await createUser(newUser);
+
+      return NextResponse.json({
+        message: "Ny användare tillagd",
+        userId: result.insertedId,
+      });
     }
 
-    const result = await db.collection<IUsers>("users").insertOne({
-      ...body,
-      createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString(),
-    });
+    if (action === "login") {
+      const user = await getUserByEmail(email);
 
-    return NextResponse.json({
-      message: "Ny användare tillagd",
-      userId: result.insertedId,
-    });
+      if (!user || user.password !== password) {
+        return NextResponse.json(
+          { error: "Användarnamn eller lösenord är felaktigt" },
+          { status: 400 }
+        );
+      }
+
+      return NextResponse.json({
+        message: "Inloggning lyckades",
+        userId: user._id.toString(),
+      });
+    }
+
+    return NextResponse.json({ error: "Ogiltig åtgärd" }, { status: 400 });
   } catch (err) {
-    console.error("felmeddelande:", err);
+    console.error("Fel vid hantering av POST-förfrågan:", err);
     return NextResponse.json(
-      { error: "Kunde inte lägga till användare" },
+      { error: "Kunde inte bearbeta förfrågan" },
       { status: 500 }
     );
   }
