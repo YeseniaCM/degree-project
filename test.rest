@@ -1,0 +1,17 @@
+GET http://localhost:3000/api/redirects
+
+### 
+GET http://localhost:3000/api/users
+###
+
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "username": "Test",
+  "email": "test@example.com",
+  "password": "test",
+  "fullName": "test testsson"
+}
+
+###
