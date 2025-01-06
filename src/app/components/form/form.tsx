@@ -1,10 +1,22 @@
-import { SForm } from "./formStyles"
+"use client";
+import {
+    FormControl,
+  FormTitle,
+  FormWrapper,
+  Input,
+  Label,
+  SubmitButton,
+} from "./formStyles";
 
-export const Form = () => {
-    return <Form>
-        <FormTitle></FormTitle>
-        <TextInput></TextInput>
-        <PasswordInput></PasswordInput>
-        <SubmitButton></SubmitButton>
-    </SForm>
+export default function Form() {
+  return (
+    <FormWrapper>
+      <FormTitle>Sign in</FormTitle>
+      <FormControl>
+        <Label>Email</Label>
+        <Input />
+      </FormControl>
+      <SubmitButton>Sign in</SubmitButton>
+    </FormWrapper>
+  );
 }
