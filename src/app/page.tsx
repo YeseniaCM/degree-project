@@ -1,12 +1,17 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+import Image from 'next/image';
+import {
+  Page,
+  Main,
+  CTAs,
+  Footer
+} from '@/styles/stylePage'; // Importera Styled Components
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <Page>
+      <Main>
         <Image
-          className={styles.logo}
           src="/next.svg"
           alt="Next.js logo"
           width={180}
@@ -20,45 +25,38 @@ export default function Home() {
           <li>Save and see your changes instantly.</li>
         </ol>
 
-        <div className={styles.ctas}>
+        <CTAs>
           <a
-            className={styles.primary}
+            className="primary"
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
-              className={styles.logo}
               src="/vercel.svg"
-              alt="Vercel logomark"
+              alt="Vercel logo"
               width={20}
               height={20}
             />
             Deploy now
           </a>
           <a
+            className="secondary"
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.secondary}
           >
             Read our docs
           </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
+        </CTAs>
+      </Main>
+      <Footer>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
+          <Image src="/file.svg" alt="File icon" width={16} height={16} />
           Learn
         </a>
         <a
@@ -66,13 +64,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
+          <Image src="/window.svg" alt="Window icon" width={16} height={16} />
           Examples
         </a>
         <a
@@ -80,16 +72,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
+          <Image src="/globe.svg" alt="Globe icon" width={16} height={16} />
           Go to nextjs.org →
         </a>
-      </footer>
-    </div>
+      </Footer>
+    </Page>
   );
 }
