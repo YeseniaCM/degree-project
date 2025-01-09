@@ -8,7 +8,6 @@ export async function GET() {
 
     const response = users.map((doc) => ({
       _id: doc._id?.toString() || "",
-      username: doc.username,
       email: doc.email,
       password: doc.password,
       fullName: doc.fullName,
@@ -30,7 +29,6 @@ export async function POST(req: NextRequest) {
   try {
     const {
       action,
-      username,
       email,
       password,
       fullName,
@@ -43,7 +41,7 @@ export async function POST(req: NextRequest) {
     } = await req.json();
 
     if (action === "register") {
-      if (!username || !email || !password || !fullName) {
+      if (!fullName || !email || !password ) {
         return NextResponse.json(
           { error: "Saknar i fyllda fält" },
           { status: 400 }
@@ -59,7 +57,6 @@ export async function POST(req: NextRequest) {
       }
 
       const newUser: IUsers = {
-        username,
         email,
         password,
         fullName,

@@ -1,16 +1,22 @@
 import { btnReset, v } from "@/app/styles/variables";
 import styled from "styled-components";
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.bg1};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
 `;
 
-export const FormTitle = styled.form`
-  font-size: 24px;
+export const FormTitle = styled.h1`
   font-weight: 600;
+`;
+
+export const FormDok = styled.form`
+  width: 100%;
+  background: ${({ theme }) => theme.bg1};
+  border-radius: ${v.borderRadius};
+  padding: ${v.mdSpacing};
 `;
 
 export const FormControl = styled.div`

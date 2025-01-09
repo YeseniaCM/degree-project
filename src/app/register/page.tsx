@@ -1,11 +1,8 @@
-export default function Registration () {
+import RegisterForm from "../components/form/RegisterForm"
+
+export default async function Register() {
+    console.log('Client rendered')
     return (
-        <div>
-            <form action="">
-                <div>
-                    <label></label>
-                </div>
-            </form>
-        </div>
+        <RegisterForm/>
     )
 }
