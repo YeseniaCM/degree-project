@@ -1,7 +1,6 @@
 import { ObjectId } from "mongodb";
 export interface IUsers {
   _id?: ObjectId;
-  username: string;
   email: string;
   password: string;
   fullName: string;
@@ -10,7 +9,6 @@ export interface IUsers {
 }
 export interface IUsersResponse {
   _id: string;
-  username: string;
   email: string;
   password: string;
   fullName: string;
@@ -19,7 +17,6 @@ export interface IUsersResponse {
 }
 export interface IUser {
   _id: ObjectId;
-  username: string;
   email: string;
   password: string;
   fullName: string;
@@ -28,7 +25,6 @@ export interface IUser {
 }
 export interface IUserResponse {
   _id?: string;
-  username: string;
   email: string;
   fullName: string;
   createdAt: string;
