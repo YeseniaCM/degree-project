@@ -20,7 +20,7 @@ export const theme = {
         textSecondary: "rgb(247, 247, 247)",
         textSecondary2: "rgb(222, 222, 222)",
         textSecondaryFade: "rgba(247, 247, 247, 0.4)",
-        bg: "rgb(0, 0, 0)",
+        bg: "rgb(133, 133, 133)",
         bg2: "rgb(66, 61, 54)",
         bg3: "rgb(85, 85, 85)",
         bgSecondary: "rgb(20, 20, 20)",

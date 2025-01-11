@@ -9,8 +9,10 @@ import {
   SubmitButton,
 } from "./formStyles";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -48,6 +50,7 @@ export default function RegisterForm() {
 
       if (res.ok) {
         console.log("Registrering lyckades:", data);
+        router.push("/login");
       } else {
         setError(data.error || "Kunde inte genomföra registreringen.");
       }
