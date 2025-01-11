@@ -1,8 +1,9 @@
-'use client'
-import Form from "../components/form/form"
+"use client";
+import LoginForm from "../components/form/LoginForm";
 
-export default function Login() {
-    return (
-        <Form></Form>
-    )
+export default function Login () {
+
+  return (
+    <LoginForm/>
+  );
 }
