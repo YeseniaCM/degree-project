@@ -12,7 +12,6 @@ Content-Type: application/json
 
 {
   "action": "register",
-  "username": "Anton",
   "email": "Anton@mail.com",
   "password": "anton",
   "fullName": "anton testsson"
