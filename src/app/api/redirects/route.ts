@@ -5,7 +5,7 @@ import {
   getRedriectByUrl,
 } from "@/lib/redriectsdb";
 import { ObjectId } from "mongodb";
-import { IRedirects } from "./IRedirects";
+import { IRedirect } from "../../types/IRedirect";
 
 export async function GET() {
   try {
@@ -85,14 +85,13 @@ export async function POST(req: NextRequest) {
 
       const statusCode = parseInt(httpStatusCode, 10);
 
-      const newRedirect: IRedirects = {
-        _id: new ObjectId(),
+      const newRedirect: IRedirect = {
+        _id: new ObjectId().toString(),
         sourceUrl,
         destinationUrl,
         httpStatusCode: statusCode,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        isActive: true,
       };
 
       await createRedirect(newRedirect);

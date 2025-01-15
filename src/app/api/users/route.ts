@@ -1,6 +1,6 @@
 import { getAllUsers, getUserByEmail, createUser } from "@/lib/userdb";
 import { NextResponse, NextRequest } from "next/server";
-import { IUsers } from "./IUser";
+import { IUser } from "../../types/IUser";
 
 export async function GET() {
   try {
@@ -34,7 +34,6 @@ export async function POST(req: NextRequest) {
       fullName,
     }: {
       action: string;
-      username?: string;
       email: string;
       password: string;
       fullName?: string;
@@ -56,7 +55,7 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      const newUser: IUsers = {
+      const newUser: IUser = {
         email,
         password,
         fullName,

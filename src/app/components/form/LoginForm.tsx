@@ -7,7 +7,7 @@ import {
   Input,
   Label,
   SubmitButton,
-} from "./formStyles";
+} from "../../styles/form/wrapper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
