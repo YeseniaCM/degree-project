@@ -1,17 +1,17 @@
-import { IRedirects } from "@/app/api/redirects/IRedirects";
+import { IRedirect } from "@/app/types/IRedirect";
 import clientPromise from "./mongodb";
 import { ObjectId } from "mongodb";
 
 export async function getAllRediretcs() {
   const client = await clientPromise;
   const db = client.db("redirects");
-  return db.collection<IRedirects>("redirects").find({}).toArray();
+  return db.collection<IRedirect>("redirects").find({}).toArray();
 }
 
-export async function createRedirect(redirect: IRedirects) {
+export async function createRedirect(redirect: IRedirect) {
   const client = await clientPromise;
   const db = client.db("redirects");
-  return db.collection<IRedirects>("redirects").insertOne(redirect);
+  return db.collection<IRedirect>("redirects").insertOne(redirect);
 }
 
 export async function getRedirectById(id: string) {
@@ -26,7 +26,7 @@ export function isValidObjectId(id: string): boolean {
 
 export async function updateRedirectById(
   id: string,
-  updateData: Partial<IRedirects>
+  updateData: Partial<IRedirect>
 ) {
   const client = await clientPromise;
   const db = client.db("redirects");
@@ -47,7 +47,7 @@ export async function getRedriectByUrl(
   if (sourceUrl) query.sourceUrl = sourceUrl;
   if (destinationUrl) query.destinationUrl = destinationUrl;
 
-  return db.collection<IRedirects>("redirects").findOne(query);
+  return db.collection<IRedirect>("redirects").findOne(query);
 }
 
 export async function deleteRedirectById(id: string) {
