@@ -5,7 +5,7 @@ import {
   deleteRedirectById,
 } from "@/lib/redriectsdb";
 import { NextRequest, NextResponse } from "next/server";
-import { IRedirects, IRedirectsResponse } from "../IRedirects";
+import { IRedirect } from "../../../types/IRedirect";
 
 export async function GET(
   req: NextRequest,
@@ -29,14 +29,13 @@ export async function GET(
       );
     }
 
-    const response: IRedirectsResponse = {
+    const response: IRedirect = {
       _id: redirect._id.toString(),
       sourceUrl: redirect.sourceUrl,
       destinationUrl: redirect.destinationUrl,
       httpStatusCode: redirect.httpStatusCode,
       createdAt: redirect.createdAt,
       updatedAt: redirect.updatedAt,
-      isActive: redirect.isActive,
     };
 
     return NextResponse.json(response);
@@ -60,7 +59,7 @@ export async function PUT(
   }
 
   try {
-    const body: Partial<IRedirects> = await req.json();
+    const body: Partial<IRedirect> = await req.json();
     const resultat = await updateRedirectById(id, body);
 
     if (resultat.matchedCount === 0) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { IUser, IUserResponse } from "../IUser";
+import { IUser } from "../../../types/IUser";
 import {
   getUserById,
   updateUserById,
@@ -27,10 +27,10 @@ export async function GET(
       );
     }
 
-    const response: IUserResponse = {
+    const response: IUser = {
       _id: user._id.toString(),
-      username: user.username,
       email: user.email,
+      password: user.username,
       fullName: user.fullName,
       createdAt: user.createdAt,
       lastLogin: user.lastLogin,

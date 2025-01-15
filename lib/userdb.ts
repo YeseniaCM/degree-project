@@ -1,4 +1,4 @@
-import { IUser, IUsers } from "@/app/api/users/IUser";
+import { IUser } from "@/app/types/IUser";
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
 
@@ -29,17 +29,17 @@ export function isValidObjectId(id: string): boolean {
 export async function getAllUsers() {
   const client = await clientPromise;
   const db = client.db("users");
-  return db.collection<IUsers>("users").find({}).toArray();
+  return db.collection<IUser>("users").find({}).toArray();
 }
 
 export async function getUserByEmail(email: string) {
   const client = await clientPromise;
   const db = client.db("users");
-  return db.collection<IUsers>("users").findOne({ email });
+  return db.collection<IUser>("users").findOne({ email });
 }
 
-export async function createUser(user: IUsers) {
+export async function createUser(user: IUser) {
   const client = await clientPromise;
   const db = client.db("users");
-  return db.collection<IUsers>("users").insertOne(user);
+  return db.collection<IUser>("users").insertOne(user);
 }
