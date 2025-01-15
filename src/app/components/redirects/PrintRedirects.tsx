@@ -1,19 +1,19 @@
+import { MessageContainer, Message } from "@/app/styles/ErrorMessage/wrapper";
 import {
-  Button,
-  ButtonWrapper,
-  ColumnLabel,
-  ColumnRow,
-  RedirectsList,
   RedirectWrapper,
   Table,
   Title,
-  TitleColumns,
   TitleWrapper,
-} from "@/styles/PrintRedirects/wrapper";
+  TitleColumns,
+  RedirectsList,
+  ColumnRow,
+  ColumnLabel,
+  ButtonWrapper,
+  Button,
+} from "@/app/styles/PrintRedirects/wrapper";
 import CreateRedirect from "./CreateRedirect";
 import EditButton from "./EditRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
-import { MessageContainer, Message } from "@/styles/ErrorMessage/wrapper";
 
 export default function PrintRedirects() {
   const { isLoading, redirects, error, deleteRedirect } = useRedirects();
@@ -52,7 +52,9 @@ export default function PrintRedirects() {
                 <ColumnLabel>{redirect.httpStatusCode}</ColumnLabel>
                 <ButtonWrapper>
                   <EditButton redirect={redirect} />
-                  <Button onClick={() => handleDelete(redirect._id?.toString() || '')}>
+                  <Button
+                    onClick={() => handleDelete(redirect._id?.toString() || "")}
+                  >
                     Delete
                   </Button>
                 </ButtonWrapper>
