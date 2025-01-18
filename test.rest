@@ -1,6 +1,3 @@
-GET http://localhost:3000/api/redirects
-
-### 
 GET http://localhost:3000/api/users
 ###
 
@@ -23,7 +20,7 @@ Content-Type: application/json
 #   "password": "anton"
 # }
 ###
-// Måste göras
+
 DELETE http://localhost:3000/api/users/Lägg-till-id:nr
 Content-Type: application/json
 
@@ -38,3 +35,41 @@ Content-Type: application/json
 {
 "email": "janedoe@example.com", "password": "hashedpassword456"
 }
+
+// REDIRECTS Test
+###
+GET http://localhost:3000/api/redirects
+
+###
+
+POST http://localhost:3000/api/redirects
+Content-Type: application/json
+
+{
+  "action": "createRedirect",
+ "sourceUrl": "/test",
+    "destinationUrl": "/test-test",
+    "httpStatusCode": 302,
+}
+
+###
+
+PUT http://localhost:3000/api/redirects/67840682ba8530825e4e0407
+Content-Type: application/json
+
+{
+  "action": "createRedirect",
+ "sourceUrl": "/test",
+    "destinationUrl": "/test-test",
+    "httpStatusCode": 302,
+}
+### 
+
+DELETE http://localhost:3000/api/redirects/Lägg-till-id:nr
+Content-Type: application/json
+
+{
+"_id": "Lägg till id:nr"
+}
+###
+
