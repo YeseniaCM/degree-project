@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/styles/theme";
 import { GlobalStyle } from "./styles/globalTheme";
+import { Wrapper } from "./styles/Wrapper";
 
 
 const geistSans = Geist({
@@ -31,9 +32,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <StyledComponentsRegistry>
         <GlobalStyle />
+        <Wrapper>
           <ThemeProvider theme={theme}>
         {children}
         </ThemeProvider>
+        </Wrapper>
         </StyledComponentsRegistry>
       </body>
     </html>
