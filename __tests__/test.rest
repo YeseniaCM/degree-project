@@ -1,3 +1,41 @@
+<<<<<<< HEAD:test.rest
+=======
+GET http://localhost:3000/api/redirects
+
+### 
+
+GET http://localhost:3000/api/redirects/677009d9fc8d5b7c5950ac2b
+
+### 
+
+POST http://localhost:3000/api/redirects
+Content-Type: application/json
+
+{
+  "action": "createRedirect",
+  "sourceUrl": "/as",
+  "destinationUrl": "/sa",
+  "httpStatusCode": "301"
+}
+
+### 
+
+PUT http://localhost:3000/api/redirects/677965d50764eec5b4412c2d
+Content-Type: application/json
+
+{
+  "sourceUrl": "/Home"
+}
+### 
+
+DELETE http://localhost:3000/api/redirects/677965d50764eec5b4412c2d
+Content-Type: application/json
+
+{
+"_id": "677965d50764eec5b4412c2d"
+}
+
+>>>>>>> 7307a357054375a4d934bc1c2a3abb31d8efd559:__tests__/test.rest
 GET http://localhost:3000/api/users
 ###
 
