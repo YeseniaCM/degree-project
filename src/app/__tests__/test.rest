@@ -33,6 +33,8 @@ Content-Type: application/json
 "_id": "677965d50764eec5b4412c2d"
 }
 
+// User test
+
 GET http://localhost:3000/api/users
 ###
 
