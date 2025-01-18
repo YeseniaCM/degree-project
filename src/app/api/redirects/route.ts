@@ -18,7 +18,6 @@ export async function GET() {
       httpStatusCode: doc.httpStatusCode,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
-      isActive: doc.isActive,
     }));
 
     return NextResponse.json(response);
