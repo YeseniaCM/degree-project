@@ -1,0 +1,94 @@
+import styled from "styled-components";
+import { btnReset, v } from "../../variables";
+
+
+export const AddButton = styled.button`
+    ${btnReset};
+    width: 4%;
+    background: ${({ theme }) => theme.bg};
+    color: ${({ theme }) => theme.text};
+    padding: ${v.smSpacing};
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: ${v.mdSpacing};
+`;
+
+export const CreateWrapper = styled.div`
+ position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above all other elements */
+`;
+
+export const CreateContainer = styled.div`
+ background: ${({ theme }) => theme.primary};
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  width: 400px; /* Adjust width as needed */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Add spacing between inputs */
+  z-index: 1001;
+`;
+
+export const Input = styled.input`
+  outline: none;
+  border: 1px solid ${({ theme }) => theme.bg};
+    border-radius: ${v.borderRadius};
+    padding: ${v.smSpacing};
+    width: 100%;
+    font-size: 14px;
+`;
+
+export const EditRedirectInput = styled.input`
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.bg};
+    border-radius: ${v.borderRadius};
+    padding: ${v.smSpacing};
+    width: 100%;
+    font-size: 14px;
+`;
+
+export const EditRedirect = styled.button`
+    ${btnReset};
+    width: 30%;
+    background: ${({ theme }) => theme.bg};
+    color: ${({ theme }) => theme.text};
+    padding: ${v.smSpacing};
+    display: flex;
+    justify-content: center;
+    border-radius: ${v.borderRadius};
+    cursor: pointer;
+    margin-right: ${v.smSpacing};
+`;
+
+export const EditRedirectForm = styled.form`
+    ${btnReset};
+    width: 100%;
+    background: ${({ theme }) => theme.bg};
+    color: ${({ theme }) => theme.text};
+    padding: ${v.smSpacing};
+    display: flex;
+    justify-content: center;
+    border-radius: ${v.borderRadius};
+    cursor: pointer;
+    margin-right: ${v.smSpacing};
+`;
+
+
+
+
+export const CreateRedirectWrapper = styled.div`
+ display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+`;

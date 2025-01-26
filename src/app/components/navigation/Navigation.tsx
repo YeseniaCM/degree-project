@@ -13,16 +13,16 @@ import {
 } from "@/app/styles/navigation/wrapper";
 import { JSX, useContext, useRef, useState } from "react";
 import { AiOutlineHome, AiOutlineLeft } from "react-icons/ai";
-import { MdLogout } from "react-icons/md";
+import { MdLogin, MdLogout } from "react-icons/md";
 import { ThemeContext } from "styled-components";
 import { usePathname } from "next/navigation";
 import { TiArrowRepeat } from "react-icons/ti";
-import { IoMdAddCircleOutline } from "react-icons/io";
 
 export const Navigation = () => {
   // const searchRef = useRef(null) || '';
   const { theme, setTheme } = useContext(ThemeContext);
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const pathname = usePathname();
 
@@ -43,17 +43,16 @@ export const Navigation = () => {
       icon: <TiArrowRepeat />,
       to: "/redirect"
     },
-    {
-      label: "Create new redirect",
-      icon: <IoMdAddCircleOutline />,
-      to: "/t"
-    }
   ];
 
   const secondaryLinksArray: { label: string; icon: JSX.Element }[] = [
     {
       label: "Logout",
       icon: <MdLogout />
+    }, 
+    {
+      label: "Login",
+      icon: <MdLogin />
     }
   ];
 
@@ -73,9 +72,9 @@ export const Navigation = () => {
 
   return (
     <>
-      <Navbar isOpen={sidebarOpen}>
+      <Navbar $isOpen={sidebarOpen}>
         <NavbarButton
-          isOpen={sidebarOpen}
+          $isOpen={sidebarOpen}
           onClick={() => setSidebarOpen((prev) => !prev)}
         >
           <AiOutlineLeft />
@@ -96,7 +95,7 @@ export const Navigation = () => {
       </NavSearch>
       <NavDivider /> */}
         {menuItems.map(({ icon, label, to }: Link) => (
-          <NavLinkContainer key={label} isActive={pathname === to}>
+          <NavLinkContainer key={label} $isActive={pathname === to}>
             <NavLink
               href={to}
               style={!sidebarOpen ? { width: `fit-content` } : {}}
@@ -111,22 +110,25 @@ export const Navigation = () => {
           </NavLinkContainer>
         ))}
         <NavDivider />
-        {secondaryLinksArray.map(
-          ({ icon, label }: { icon: JSX.Element; label: string }) => (
-            <NavLinkContainer key={label}>
-              <NavLink
-                href="/"
-                style={!sidebarOpen ? { width: `fit-content` } : {}}
-              >
-                <NavLinkIcon>{icon}</NavLinkIcon>
-                {sidebarOpen && <NavLinkLabel>{label}</NavLinkLabel>}
-              </NavLink>
-            </NavLinkContainer>
-          )
-        )}
+        <NavLinkContainer>
+        <NavLink
+            href={isLoggedIn ? "/" : "/login"} // Omdirigera till /login om ej inloggad
+            style={!sidebarOpen ? { width: `fit-content` } : {}}
+            onClick={() => {
+              if (isLoggedIn) {
+                console.log("Loggar ut...");
+                setIsLoggedIn(false); // Logga ut användaren
+              }
+            }}
+          >
+            <NavLinkIcon>{isLoggedIn ? <MdLogout /> : <MdLogin />}</NavLinkIcon>
+            {sidebarOpen && (
+              <NavLinkLabel>{isLoggedIn ? "Logout" : "Login"}</NavLinkLabel>
+            )}
+          </NavLink>
+        </NavLinkContainer>
         <NavDivider />
         <NavTheme>
-          {" "}
           {theme === "dark" && <SunIcon onClick={handleThemeChange} />}
           {theme === "light" && <MoonIcon onClick={handleThemeChange} />}
         </NavTheme>

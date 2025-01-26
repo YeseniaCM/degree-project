@@ -1,22 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
+
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
+      --background: ${({ theme }) => theme.bg};
+      --foreground: ${({ theme }) => theme.text};
     }
   }
 
   @media (prefers-color-scheme: light) {
     :root {
-      --background: #ffffff;
-      --foreground: #171717;
+      --background: ${({ theme }) => theme.bg};
+      --foreground: ${({ theme }) => theme.text};
     }
   }
 

@@ -4,12 +4,12 @@ import {
   FormDok,
   FormTitle,
   FormWrapper,
-  Input,
   Label,
   SubmitButton,
 } from "../../styles/form/wrapper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Input } from "@/app/styles/redirects/createRedirects/wrapper";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function LoginForm() {
       } else {
         setError(data.error || "Kunde inte genomföra inloggningen.");
       }
-    } catch (error) {
+    } catch  {
       setError("Kunde inte ansluta till servern.");
     }
 

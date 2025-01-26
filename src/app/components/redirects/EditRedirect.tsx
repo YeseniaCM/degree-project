@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, EditContainer } from "../../styles/PrintRedirects/wrapper";
+import { Button, EditContainer } from "../../styles/redirects/PrintRedirects/wrapper";
 import { IRedirect } from "@/app/types/IRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
 import { Input, Label } from "../../styles/form/wrapper";
