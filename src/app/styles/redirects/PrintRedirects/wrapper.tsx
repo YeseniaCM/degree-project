@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 export const RedirectWrapper = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.bg1};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
+  
+  margin: auto;
 `;
 
 export const Title = styled.h1`
@@ -18,7 +19,8 @@ export const Table = styled.div`
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
 
-  border: 1px solid ${({ theme }) => theme.darkTheme.bg};
+  color: ${({ theme }) => theme.text};
+  border: 1px solid ${({ theme }) => theme.bg};
 `;
 
 export const TitleWrapper = styled.div`
@@ -49,7 +51,7 @@ export const ColumnRow = styled.div`
 display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-bottom: ${v.smSpacing};
-      border: 1px solid ${({ theme }) => theme.darkTheme.bg};
+      border: 1px solid ${({ theme }) => theme.bg};
       align-items: center;
       `;
 
@@ -68,8 +70,8 @@ display: flex;
 export const Button = styled.button`
    ${btnReset};
     width: 30%;
-    background: ${({ theme }) => theme.darkTheme.bg};
-    color: ${({ theme }) => theme.darkTheme.text};
+    background: ${({ theme }) => theme.bg3};
+    color: ${({ theme }) => theme.text2};
     padding: ${v.smSpacing};
     display: flex;
     justify-content: center;
@@ -77,60 +79,6 @@ export const Button = styled.button`
     cursor: pointer;
 `;
 
-export const AddButton = styled.button`
-    ${btnReset};
-    width: 4%;
-    background: ${({ theme }) => theme.darkTheme.bg};
-    color: ${({ theme }) => theme.darkTheme.text};
-    padding: ${v.smSpacing};
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: ${v.mdSpacing};
-`;
-
-export const EditRedirect = styled.button`
-    ${btnReset};
-    width: 30%;
-    background: ${({ theme }) => theme.darkTheme.bg};
-    color: ${({ theme }) => theme.darkTheme.text};
-    padding: ${v.smSpacing};
-    display: flex;
-    justify-content: center;
-    border-radius: ${v.borderRadius};
-    cursor: pointer;
-    margin-right: ${v.smSpacing};
-`;
-
-export const EditRedirectForm = styled.form`
-    ${btnReset};
-    width: 100%;
-    background: ${({ theme }) => theme.darkTheme.bg};
-    color: ${({ theme }) => theme.darkTheme.text};
-    padding: ${v.smSpacing};
-    display: flex;
-    justify-content: center;
-    border-radius: ${v.borderRadius};
-    cursor: pointer;
-    margin-right: ${v.smSpacing};
-`;
-
-export const CreateContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: ${v.mdSpacing};
-`;
-
-export const EditRedirectInput = styled.input`
-    outline: none;
-    border: 1px solid ${({ theme }) => theme.darkTheme.bg};
-    border-radius: ${v.borderRadius};
-    padding: ${v.smSpacing};
-    width: 100%;
-    font-size: 14px;
-`;
 
 export const EditContainer = styled.div`
     position: fixed;

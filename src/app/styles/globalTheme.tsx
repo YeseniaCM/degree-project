@@ -1,15 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
+
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
+      --background: ${({ theme }) => theme.bg};
+      --foreground: ${({ theme }) => theme.text};
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --background: ${({ theme }) => theme.bg};
+      --foreground: ${({ theme }) => theme.text};
     }
   }
 
@@ -17,9 +21,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     max-width: 100vw;
     overflow-x: hidden;
-  }
-
-  body {
     color: var(--foreground);
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
@@ -41,11 +42,4 @@ export const GlobalStyle = createGlobalStyle`
   button a{
     color: #ffffff;
   }
-
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
-  }
 `;
-
