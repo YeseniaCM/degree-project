@@ -10,7 +10,7 @@ import {
   ColumnLabel,
   ButtonWrapper,
   Button,
-} from "@/app/styles/PrintRedirects/wrapper";
+} from "@/app/styles/redirects/PrintRedirects/wrapper";
 import CreateRedirect from "./CreateRedirect";
 import EditButton from "./EditRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
@@ -25,7 +25,6 @@ export default function PrintRedirects() {
       console.log("Error deleting redirect", error);
     }
   };
-
   if (isLoading) {
     return <div>Laddar...</div>;
   }

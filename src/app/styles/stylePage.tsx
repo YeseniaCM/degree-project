@@ -1,12 +1,18 @@
 import styled from 'styled-components';
+import { v } from './variables';
 
 export const Page = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  gap: 64px;
+  width: 100%;
+  border-radius: ${v.borderRadius};
+  padding: ${v.mdSpacing};
+  margin: auto;
+`;
+
+export const H1 = styled.h1`
+  font-size: 2.5rem; /* Stor text */
+  font-weight: bold;
+  color: ${({ theme }) => theme.title || "#333"};
+  margin: 16px 0;
 `;
 
 export const Main = styled.main`

@@ -1,13 +1,9 @@
-import { useState } from "react";
-import {
-  AddButton,
-  Button,
-  CreateContainer,
-  EditContainer,
-  EditRedirectInput,
-} from "../../styles/PrintRedirects/wrapper";
+import { AddButton, CreateContainer, Input, EditRedirectInput, CreateRedirectWrapper, CreateWrapper } from "@/app/styles/redirects/createRedirects/wrapper";
+import { Button } from "@/app/styles/redirects/PrintRedirects/wrapper";
+import { H1 } from "@/app/styles/stylePage";
 import { IRedirect } from "@/app/types/IRedirect";
-import { Input } from "../../styles/form/wrapper";
+import { useState } from "react";
+
 
 export default function CreateRedirect() {
   const [sourceUrl, setSourceUrl] = useState("");
@@ -57,7 +53,9 @@ export default function CreateRedirect() {
       <AddButton onClick={addRedirect}>+</AddButton>
 
       {createRedirect && (
+        <CreateWrapper>
         <CreateContainer>
+          <H1>Skapa redirect</H1>
           <Input
             type="text"
             placeholder="Source URL"
@@ -76,9 +74,12 @@ export default function CreateRedirect() {
             value={httpStatusCode}
             onChange={(e) => setHttpStatusCode(e.target.value)}
           />
-          <Button onClick={addRedirect}>Add</Button>
+          <CreateRedirectWrapper>
+          <Button onClick={addRedirect}>Skapa</Button>
           <Button onClick={() => setCreateRedirect(false)}>Avbryt</Button>
+          </CreateRedirectWrapper>
         </CreateContainer>
+        </CreateWrapper>
       )}
     </>
   );

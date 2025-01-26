@@ -9,6 +9,7 @@ import { Navigation } from "./components/navigation/Navigation";
 const StyledComponentsRegistry = styled.div`
   display: flex;
   flex-direction: row;
+  margin: auto;
 `;
 
 export default function Providers(props: React.PropsWithChildren) {

@@ -2,10 +2,11 @@ import { btnReset, v } from "@/app/styles/variables";
 import styled from "styled-components";
 
 export const FormWrapper = styled.div`
-  width: 100%;
-  background: ${({ theme }) => theme.bg1};
+  width: 50%;
+  background: ${({ theme }) => theme.primary};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
+  margin: auto;
 `;
 
 export const FormTitle = styled.h1`
@@ -29,34 +30,25 @@ export const FormControl = styled.div`
 `;
 
 export const Label = styled.label`
-display: block;
+  display: block;
   font-size: 14px;
   font-weight: 600;
   margin-left: 4px;
   margin-bottom: calc(${v.smSpacing} / 4);
+  margin-top: ${v.mdSpacing};
   /* border: 1px solid #ccc;
   border-radius: 4px; */
 `;
 
-export const Input = styled.input`
-  outline: none;
-  border: 1px solid ${({ theme }) => theme.darkTheme.bg};
-    border-radius: ${v.borderRadius};
-    padding: ${v.smSpacing};
-    width: 100%;
-    font-size: 14px;
-`;
-
 export const SubmitButton = styled.button`
-   ${btnReset};
-    width: 100%;
-    background: ${({ theme }) => theme.darkTheme.bg};
-    color: ${({ theme }) => theme.darkTheme.text};
-    padding: ${v.smSpacing};
-    display: flex;
-    justify-content: center;
-    border-radius: ${v.borderRadius};
-    margin-top: ${v.mdSpacing};
-    cursor: pointer;
-
+  ${btnReset};
+  width: 100%;
+  background: ${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.text};
+  padding: ${v.smSpacing};
+  display: flex;
+  justify-content: center;
+  border-radius: ${v.borderRadius};
+  margin-top: ${v.mdSpacing};
+  cursor: pointer;
 `;

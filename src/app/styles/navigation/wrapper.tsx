@@ -3,20 +3,20 @@ import styled from "styled-components";
 import { btnReset, v } from "../variables";
 import Link from "next/link";
 
-export const Navbar = styled.div<{ isOpen: boolean }>`
-  width: ${({ isOpen }) =>
-    !isOpen ? `auto` : "250px"}; /* Update sidebar width */
+export const Navbar = styled.div<{ $isOpen: boolean }>`
+  width: ${({ $isOpen }) =>
+    !$isOpen ? `auto` : "250px"}; /* Update sidebar width */
   background: ${({ theme }) => theme.navBg};
   height: 100vh;
   padding: 16px; /* Adjust padding based on your design */
   position: relative;
 `;
 
-export const NavbarButton = styled.button<{ isOpen: boolean }>`
+export const NavbarButton = styled.button<{ $isOpen: boolean }>`
   ${btnReset};
   position: absolute;
   top: ${v.mdSpacing};
-  right: ${({ isOpen }) => (isOpen ? `-14px` : `-16px`)};
+  right: ${({ $isOpen }) => ($isOpen ? `-14px` : `-16px`)};
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -28,7 +28,7 @@ export const NavbarButton = styled.button<{ isOpen: boolean }>`
   justify-content: center;
   cursor: pointer;
 
-  transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
+  transform: ${({ $isOpen }) => (!$isOpen ? `rotate(180deg)` : `initial`)};
   &:hover {
     background: ${({ theme }) => theme.bgHover};
   }
@@ -83,8 +83,8 @@ export const NavDivider = styled.div`
 `;
 
 export const NavLinkContainer = styled.div`
-  background: ${({ theme, isActive }) =>
-    !isActive ? `transparent` : theme.bg3};
+  background: ${({ theme, $isActive }) =>
+    !$isActive ? `transparent` : theme.bg3};
   border-radius: ${v.borderRadius};
   margin: 8px 0;
 
