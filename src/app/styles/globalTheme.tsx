@@ -13,13 +13,17 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media (prefers-color-scheme: light) {
+    :root {
+      --background: #ffffff;
+      --foreground: #171717;
+    }
+  }
+
   html,
   body {
     max-width: 100vw;
     overflow-x: hidden;
-  }
-
-  body {
     color: var(--foreground);
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
@@ -41,11 +45,4 @@ export const GlobalStyle = createGlobalStyle`
   button a{
     color: #ffffff;
   }
-
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
-  }
 `;
-

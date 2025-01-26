@@ -1,48 +1,134 @@
-import styled from "styled-components"
+import { TbMoonFilled, TbSunFilled } from "react-icons/tb";
+import styled from "styled-components";
+import { btnReset, v } from "../variables";
+import Link from "next/link";
 
-export const Bar = styled.nav`
-  font-size: 18px;
-  background-image: linear-gradient(260deg,  rgb(42,224,152,255) 0%, #766c35 100%); 
-  border: 1px solid rgba(0,0,0,0.2);
-  padding-bottom: 10px;
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 0;
-    height: 70px;
-    align-items: center;
-  }
-`
-export const MainNav = styled.ul`
-  list-style-type: none;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    display: flex !important;
-    margin-right: 30px;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-`
-export const NavLi = styled.li`
-  text-align: center;
-  margin: 15px auto;
-` 
-export const NavLink = styled.a`
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {    
-    margin: 0px 10px;
-  }
-`
-export const NavBarToggle = styled.span`
+export const Navbar = styled.div<{ isOpen: boolean }>`
+  width: ${({ isOpen }) =>
+    !isOpen ? `auto` : "250px"}; /* Update sidebar width */
+  background: ${({ theme }) => theme.navBg};
+  height: 100vh;
+  padding: 16px; /* Adjust padding based on your design */
+  position: relative;
+`;
+
+export const NavbarButton = styled.button<{ isOpen: boolean }>`
+  ${btnReset};
   position: absolute;
-  top: 10px;
-  right: 20px;
-  cursor: pointer; 
-  color: rgba(255,255,255,0.8);
-  font-size: 24px;
-`
-export const Hamburger = styled.img`
-  border: 10px solid rgba(255,255,255,0.8);
-`
+  top: ${v.mdSpacing};
+  right: ${({ isOpen }) => (isOpen ? `-14px` : `-16px`)};
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.navBg};
+  box-shadow: 0 0 4px ${({ theme }) => theme.bg},
+    0 0 7px ${({ theme }) => theme.bg};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  transform: ${({ isOpen }) => (!isOpen ? `rotate(180deg)` : `initial`)};
+  &:hover {
+    background: ${({ theme }) => theme.bgHover};
+  }
+`;
+
+export const NavLogo = styled.div`
+  width: 52px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  cursor: pointer;
+
+  margin-bottom: ${v.lgSpacing};
+`;
+
+export const NavSearch = styled.div`
+  background: ${({ theme }) => theme.bgAlpha};
+  border: 1px solid ${({ theme }) => theme.bg3};
+  border-radius: ${v.borderRadius};
+  input {
+    padding: 0 ${v.smSpacing};
+    font-family: inherit;
+    letter-spacing: inherit;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: inherit;
+    background: transparent;
+  }
+  display: flex;
+`;
+
+export const NavSearchIcon = styled.button`
+  ${btnReset};
+  padding: calc(${v.mdSpacing} - 2px) ${v.mdSpacing};
+  display: flex;
+  cursor: pointer;
+
+  svg {
+    font-size: 20px;
+  }
+`;
+
+export const NavDivider = styled.div`
+  height: 1px;
+  width: 100%;
+  background: ${({ theme }) => theme.bg3};
+  margin: ${v.lgSpacing} 0;
+`;
+
+export const NavLinkContainer = styled.div`
+  background: ${({ theme, isActive }) =>
+    !isActive ? `transparent` : theme.bg3};
+  border-radius: ${v.borderRadius};
+  margin: 8px 0;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.bgHover};
+    border-radius: 2px;
+  }
+`;
+
+export const NavLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 16px;
+  padding: calc(${v.smSpacing} - 2px) 0;
+`;
+
+export const NavLinkIcon = styled.div`
+  padding: ${v.smSpacing} ${v.mdSpacing};
+  display: flex;
+
+  svg {
+    font-size: 20px;
+  }
+`;
+
+export const NavLinkLabel = styled.span`
+  margin-left: ${v.smSpacing};
+`;
+
+export const NavTheme = styled.div`
+  position: fixed;
+  bottom: 10px;
+  left: 26px;
+  font-size: 16px;
+`;
+export const SunIcon = styled(TbSunFilled)`
+  cursor: pointer;
+  font-size: 25px;
+  color: ${({ theme }) => theme.bg3};
+`;
+export const MoonIcon = styled(TbMoonFilled)`
+  cursor: pointer;
+  font-size: 25px;
+  color: ${({ theme }) => theme.bg3};
+`;
