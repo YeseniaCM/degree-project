@@ -9,7 +9,15 @@ import { Navigation } from "./components/navigation/Navigation";
 const StyledComponentsRegistry = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const ContentContainer = styled.div`
+  flex: 1;
+  max-width: 1200px;
   margin: auto;
+  padding: 20px;
 `;
 
 export default function Providers(props: React.PropsWithChildren) {
@@ -18,13 +26,13 @@ export default function Providers(props: React.PropsWithChildren) {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <StyledComponentsRegistry>
-        <ThemeProvider theme={currentTheme}>
-          <GlobalStyle />
+      <ThemeProvider theme={currentTheme}>
+        <GlobalStyle />
+        <StyledComponentsRegistry>
           <Navigation />
-          {props.children}
-        </ThemeProvider>
-      </StyledComponentsRegistry>
+          <ContentContainer>{props.children}</ContentContainer>
+        </StyledComponentsRegistry>
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 }

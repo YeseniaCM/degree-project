@@ -52,3 +52,7 @@ export const SubmitButton = styled.button`
   margin-top: ${v.mdSpacing};
   cursor: pointer;
 `;
+
+export const FormContent = styled.p `
+margin-top: ${v.smSpacing};
+`

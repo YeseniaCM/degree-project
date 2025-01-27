@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import {
+  FormContent,
   FormDok,
   FormTitle,
   FormWrapper,
   Label,
-  SubmitButton,
+  SubmitButton
 } from "../../styles/form/wrapper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -21,7 +22,7 @@ export default function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(""); 
+    setError("");
 
     if (!email || !password) {
       setError("Alla fält måste fyllas i.");
@@ -32,16 +33,16 @@ export default function LoginForm() {
     const user = {
       action: "login",
       email,
-      password,
+      password
     };
 
     try {
       const res = await fetch("/api/users", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(user)
       });
 
       const data = await res.json();
@@ -52,43 +53,43 @@ export default function LoginForm() {
       } else {
         setError(data.error || "Kunde inte genomföra inloggningen.");
       }
-    } catch  {
+    } catch {
       setError("Kunde inte ansluta till servern.");
     }
 
-    setIsLoading(false); 
+    setIsLoading(false);
   };
 
   return (
     <FormWrapper>
       <FormTitle>Logga in</FormTitle>
       <FormDok onSubmit={handleSubmit}>
-          <Label>Email</Label>
-          <Input
-            type="email"
-            placeholder="E-post"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="p-2 border rounded"
-          />
-          <Label>Lösenord</Label>
-          <Input
-            type="password"
-            placeholder="Lösenord"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="p-2 border rounded"
-          />
+        <Label>Email</Label>
+        <Input
+          type="email"
+          placeholder="E-post"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="p-2 border rounded"
+        />
+        <Label>Lösenord</Label>
+        <Input
+          type="password"
+          placeholder="Lösenord"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="p-2 border rounded"
+        />
         <SubmitButton disabled={isLoading} type="submit">
           {isLoading ? "Laddar..." : "Logga in"}
         </SubmitButton>
         {error && <div>{error}</div>}
-        <p>
+        <FormContent>
           Har du inget konto?
           <Link href="/register"> Registera dig här </Link>
-        </p>
+        </FormContent>
       </FormDok>
     </FormWrapper>
   );
