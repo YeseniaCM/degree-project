@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import {
+  FormContent,
   FormDok,
   FormTitle,
   FormWrapper,
   Label,
-  SubmitButton,
+  SubmitButton
 } from "../../styles/form/wrapper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -22,7 +23,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(""); 
+    setError("");
 
     if (!fullName || !email || !password) {
       setError("Alla fält måste fyllas i.");
@@ -34,16 +35,16 @@ export default function RegisterForm() {
       action: "register",
       fullName,
       email,
-      password,
+      password
     };
 
     try {
       const res = await fetch("/api/users", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(user)
       });
 
       const data = await res.json();
@@ -59,7 +60,7 @@ export default function RegisterForm() {
       setError("Kunde inte ansluta till servern.");
     }
 
-    setIsLoading(false); 
+    setIsLoading(false);
   };
 
   return (
@@ -97,10 +98,10 @@ export default function RegisterForm() {
           {isLoading ? "Laddar..." : "Registrera"}
         </SubmitButton>
         {error && <div>{error}</div>}
-        <p>
+        <FormContent>
           Har du redan ett konto?
           <Link href="/login"> Logga in här</Link>
-        </p>
+        </FormContent>
       </FormDok>
     </FormWrapper>
   );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.bg};
+  background: ${({ theme }) => theme.primary};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
   margin: auto;
@@ -52,8 +52,8 @@ export const Input = styled.input`
 export const SubmitButton = styled.button`
    ${btnReset};
     width: 100%;
-    background: ${({ theme }) => theme.bg};
-    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.bg3};
+    color: ${({ theme }) => theme.text2};
     padding: ${v.smSpacing};
     display: flex;
     justify-content: center;
@@ -61,4 +61,12 @@ export const SubmitButton = styled.button`
     margin-top: ${v.mdSpacing};
     cursor: pointer;
 
+    &:hover{
+    background: ${({ theme }) => theme.btnHover};
+    }
 `;
+
+export const FormContent = styled.p `
+margin-top: ${v.smSpacing};
+
+`
