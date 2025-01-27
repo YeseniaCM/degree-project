@@ -3,7 +3,6 @@ import { btnReset, v } from "../../variables";
 
 export const AddButton = styled.button`
   ${btnReset};
-  width: 20%;
   color: ${({ theme }) => theme.text};
   padding: ${v.smSpacing};
   display: flex;
@@ -17,6 +16,9 @@ export const AddButton = styled.button`
   &:hover {
     background: ${({ theme }) => theme.btn};
     color: ${({ theme }) => theme.background};
+  }
+  @media screen and (max-width: 768px){
+    width: auto;
   }
 `;
 
@@ -35,10 +37,11 @@ export const CreateWrapper = styled.div`
 
 export const CreateContainer = styled.div`
   background: ${({ theme }) => theme.navBg};
+  padding: ${v.mdSpacing};
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 24px;
-  width: 400px;
+  width: 360px;
   display: flex;
   flex-direction: column;
   gap: 16px;

@@ -6,7 +6,7 @@ export const FormWrapper = styled.div`
   background: ${({ theme }) => theme.navBg};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
-  margin: auto;
+  width: 360px;
 `;
 
 export const FormTitle = styled.h1`

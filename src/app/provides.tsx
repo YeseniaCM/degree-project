@@ -14,10 +14,21 @@ const StyledComponentsRegistry = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  flex: 1;
+ flex: 1;
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+  width: 100%; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+  @media screen and (max-width: 768px) {
+    height: 100vh; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+  }
 `;
 
 export default function Providers(props: React.PropsWithChildren) {

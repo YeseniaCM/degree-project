@@ -13,6 +13,9 @@ export const H1 = styled.h1`
   font-weight: bold;
   color: ${({ theme }) => theme.title || "#333"};
   margin: 16px 0;
+  @media screen and (max-width: 768px){
+    font-size: 2rem;
+  }
 `;
 
 export const Main = styled.main`
@@ -48,17 +51,23 @@ export const Container = styled.div`
   text-align: center;
   margin: auto;
   border-radius: 7px;
-  padding: 60px;
+  padding: 80px;
+  @media screen and (max-width: 768px){
+    padding: 25px;
+  }
 `;
 export const Content = styled.p`
   width: 100%;
   text-align: center;
-  height: 38px;
+  /* height: 38px; */
+
+  @media screen and (max-width: 768px){
+    height: auto;
+  }
 `;
 
 export const FlowBoxWrapper = styled.div`
-  display: flex;
-  margin-top: ${v.mdSpacing};
+  margin-top: ${v.xlSpacing};
 `;
 
 export const FlowBox = styled.div`
@@ -82,7 +91,12 @@ export const ButtonWrapper = styled.div`
   gap: 20px;
   justify-content: center;
   width: auto;
-  margin-top: ${v.xxlSpacing};
+  @media screen and (max-width: 768px){
+    margin-top: 0;
+    Button{
+      padding: 13px 16px;
+    }
+  }
 `;
 
 export const Button = styled.button`

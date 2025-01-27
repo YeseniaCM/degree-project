@@ -15,6 +15,9 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center; 
     align-items: center; 
+    @media screen and (max-width: 768px){
+     min-height: none ;
+    }
   }
 
   a {
