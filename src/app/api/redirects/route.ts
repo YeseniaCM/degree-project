@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   createRedirect,
   getAllRediretcs,
-  getRedriectByUrl,
+  getRedriectByUrl
 } from "@/lib/redriectsdb";
 import { ObjectId } from "mongodb";
 import { IRedirect } from "../../types/IRedirect";
@@ -17,7 +17,7 @@ export async function GET() {
       destinationUrl: doc.destinationUrl,
       httpStatusCode: doc.httpStatusCode,
       createdAt: doc.createdAt,
-      updatedAt: doc.updatedAt,
+      updatedAt: doc.updatedAt
     }));
 
     return NextResponse.json(response);
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       action,
       sourceUrl,
       destinationUrl,
-      httpStatusCode,
+      httpStatusCode
     }: {
       action: string;
       sourceUrl: string;
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(
           {
             error:
-              "Existerar redan en redirect med denna sourceUrl och destinationUrl",
+              "Existerar redan en redirect med denna sourceUrl och destinationUrl"
           },
           { status: 400 }
         );
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
         destinationUrl,
         httpStatusCode: statusCode,
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       };
 
       await createRedirect(newRedirect);
@@ -99,10 +99,10 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: "Ogiltig åtgärd" }, { status: 400 });
-  } catch (err) {
-    console.error("Error:", err);
+  } catch (error) {
+    console.error("Error:", error);
     return NextResponse.json(
-      { error: "Fel vid skapande av redirect", details: err },
+      { error: "Fel vid skapande av redirect", details: error },
       { status: 500 }
     );
   }

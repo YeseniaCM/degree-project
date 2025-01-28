@@ -70,9 +70,10 @@ export async function PUT(
     }
 
     return NextResponse.json({ resultat, message: "Lyckad uppdatering" });
-  } catch (err) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
     return NextResponse.json(
-      { err: "gick inte att uppdatera" },
+      { error: "gick inte att uppdatera" },
       { status: 500 }
     );
   }
@@ -99,7 +100,8 @@ export async function DELETE(
     }
 
     return NextResponse.json({ resultat, message: "Redirect raderad" });
-  } catch (err) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
     return NextResponse.json(
       { err: "gick inte att uppdatera" },
       { status: 500 }

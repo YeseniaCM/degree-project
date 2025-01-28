@@ -11,7 +11,7 @@ import {
   SunIcon,
   Navbar
 } from "@/app/styles/navigation/wrapper";
-import { JSX, useContext, useRef, useState } from "react";
+import { JSX, useContext, useState } from "react";
 import { AiOutlineHome, AiOutlineLeft } from "react-icons/ai";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { ThemeContext } from "styled-components";
@@ -45,16 +45,16 @@ export const Navigation = () => {
     },
   ];
 
-  const secondaryLinksArray: { label: string; icon: JSX.Element }[] = [
-    {
-      label: "Logout",
-      icon: <MdLogout />
-    }, 
-    {
-      label: "Login",
-      icon: <MdLogin />
-    }
-  ];
+  // const secondaryLinksArray: { label: string; icon: JSX.Element }[] = [
+  //   {
+  //     label: "Logout",
+  //     icon: <MdLogout />
+  //   }, 
+  //   {
+  //     label: "Login",
+  //     icon: <MdLogin />
+  //   }
+  // ];
 
   function handleThemeChange() {
     console.log("Current theme before toggle:", theme);

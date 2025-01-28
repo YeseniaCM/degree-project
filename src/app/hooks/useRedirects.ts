@@ -4,7 +4,7 @@ import { IRedirect } from "../types/IRedirect";
 export function useRedirects() {
   const [redirects, setRedirects] = useState<IRedirect[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [errorMsg, setError] = useState("");
 
   useEffect(() => {
     const fetchRedirects = async () => {
@@ -21,11 +21,13 @@ export function useRedirects() {
       } catch (error) {
         setError("Kunde inte hämta redirects");
         setIsLoading(false);
+        console.log(error, errorMsg);
+        
       }
     };
 
     fetchRedirects();
-  }, []);
+  }, [errorMsg]);
 
   const updateRedirect = async (updateRedirect: IRedirect) => {
     const { sourceUrl, destinationUrl, httpStatusCode, _id } = updateRedirect;
@@ -81,5 +83,5 @@ export function useRedirects() {
     }
   };
 
-  return { isLoading, redirects, error, updateRedirect, deleteRedirect };
+  return { isLoading, redirects, errorMsg, updateRedirect, deleteRedirect };
 }

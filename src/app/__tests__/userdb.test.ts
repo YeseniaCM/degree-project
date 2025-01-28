@@ -1,5 +1,4 @@
-import { getAllUsers, createUser, getUserById, updateUserById, deleteUserById, getUserByEmail } from "@/lib/userdb";
-import { GET } from "@/app/api/users/route";
+import { getAllUsers, createUser, } from "@/lib/userdb";
 
 jest.mock("@/lib/userdb", () => ({
   createUser: jest.fn().mockResolvedValue({ insertedId: "mock-id" })
@@ -24,7 +23,6 @@ describe('Create User function', () => {
   it('should mock createUser function', async () => {
     const result = await createUser({
         email: 'test@example.com',
-        username: "",
         password: "",
         fullName: "",
         createdAt: "",

@@ -16,7 +16,7 @@ import EditButton from "./EditRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
 
 export default function PrintRedirects() {
-  const { isLoading, redirects, error, deleteRedirect } = useRedirects();
+  const { isLoading, redirects, errorMsg, deleteRedirect } = useRedirects();
 
   const handleDelete = async (id: string) => {
     try {
@@ -29,8 +29,8 @@ export default function PrintRedirects() {
     return <div>Laddar...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (errorMsg) {
+    return <div>{errorMsg}</div>;
   }
 
   return (
