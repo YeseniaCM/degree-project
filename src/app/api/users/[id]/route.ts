@@ -9,8 +9,9 @@ import {
 
 
 
-export async function GET(req: NextRequest) {
-  const id = req.nextUrl.searchParams.get("id"); // Hämta 'id' från query-parametern
+export async function GET({ params }: { params: { id: string } } 
+) {
+  const { id } = params;
 
   if (!id || !isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id användare" }, { status: 400 });
@@ -46,14 +47,13 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const { id, ...body }: { id: string; } & Partial<IUser> = await req.json(); // Read both id and body from request
+  const { id, ...body }: { id: string } & Partial<IUser> = await req.json(); // Read both id and body from request
 
   if (!id || !isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id användare" }, { status: 400 });
   }
 
   try {
-    // Ensure we are passing a valid object for update
     const result = await updateUserById(id, body);
 
     if (result.matchedCount === 0) {
@@ -74,7 +74,7 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const { id }: { id: string } = await req.json(); 
+  const { id }: { id: string } = await req.json();
 
   if (!isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id användare" }, { status: 400 });
