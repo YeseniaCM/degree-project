@@ -1,12 +1,7 @@
 import { MongoClient } from "mongodb";
 
 declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      MONGODB_URI: string;
-    }
-  }
-
+  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
@@ -17,7 +12,7 @@ if (!URI) {
   throw new Error("Please add your MongoDB URI to .env.local");
 }
 
-let client: MongoClient = new MongoClient(URI, options);
+const client: MongoClient = new MongoClient(URI, options);
 let clientPromise: Promise<MongoClient>;
 
 if (process.env.NODE_ENV === "development") {
