@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button, EditContainer } from "../../styles/redirects/PrintRedirects/wrapper";
 import { IRedirect } from "@/app/types/IRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
-import { Input, Label } from "../../styles/form/wrapper";
+import { Input } from "@/app/styles/redirects/createRedirects/wrapper";
+import { Label } from "@/app/styles/form/wrapper";
 
 interface IEditButtonProps {
     redirect: IRedirect;
