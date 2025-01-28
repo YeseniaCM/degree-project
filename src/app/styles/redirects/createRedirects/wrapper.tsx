@@ -21,11 +21,11 @@ export const CreateWrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it appears above all other elements */
+  z-index: 1000; 
 `;
 
 export const CreateContainer = styled.div`
@@ -33,10 +33,10 @@ export const CreateContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 24px;
-  width: 400px; /* Adjust width as needed */
+  width: 400px; 
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Add spacing between inputs */
+  gap: 16px; 
   z-index: 1001;
 `;
 

@@ -10,7 +10,7 @@ export default function CreateRedirect() {
   const [destinationUrl, setDestinationUrl] = useState("");
   const [httpStatusCode, setHttpStatusCode] = useState("");
   const [createRedirect, setCreateRedirect] = useState(false);
-  const [error, setError] = useState("");
+  const [errorMsg, setError] = useState("");
   const [redirects, setRedirects] = useState<IRedirect[]>([]);
 
   const addRedirect = async () => {
@@ -45,6 +45,8 @@ export default function CreateRedirect() {
       setRedirects([...redirects, data]);
     } catch (error) {
       setError("Kunde inte skapa redirecten");
+      console.log(errorMsg, error);
+      
     }
   };
 
