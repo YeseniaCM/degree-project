@@ -5,7 +5,8 @@ export const MessageContainer = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.bg1};
   border-radius: ${v.borderRadius};
-  padding: ${v.mdSpacing};
+  padding-top: ${v.mdSpacing};
+  padding-bottom: ${v.mdSpacing};
 `;
 
 export const Message = styled.p` 

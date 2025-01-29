@@ -1,4 +1,4 @@
-import { getAllUsers, createUser, } from "@/lib/userdb";
+import { getAllUsers, createUser} from "@/lib/userdb";
 
 jest.mock("@/lib/userdb", () => ({
   createUser: jest.fn().mockResolvedValue({ insertedId: "mock-id" })

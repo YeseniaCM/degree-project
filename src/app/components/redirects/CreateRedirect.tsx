@@ -1,8 +1,9 @@
-import { AddButton, CreateContainer, Input, EditRedirectInput, CreateRedirectWrapper, CreateWrapper } from "@/app/styles/redirects/createRedirects/wrapper";
-import { Button } from "@/app/styles/redirects/PrintRedirects/wrapper";
-import { H1 } from "@/app/styles/stylePage";
-import { IRedirect } from "@/app/types/IRedirect";
 import { useState } from "react";
+import { IRedirect } from "@/app/types/IRedirect";
+import { Input } from "@/app/styles/form/wrapper";
+import { AddButton, CreateWrapper, CreateContainer, EditRedirectInput, CreateRedirectWrapper } from "@/app/styles/redirects/createRedirects/wrapper";
+import { AddIcon, Button } from "@/app/styles/redirects/PrintRedirects/wrapper";
+import { H1 } from "@/app/styles/stylePage";
 
 
 export default function CreateRedirect() {
@@ -10,7 +11,7 @@ export default function CreateRedirect() {
   const [destinationUrl, setDestinationUrl] = useState("");
   const [httpStatusCode, setHttpStatusCode] = useState("");
   const [createRedirect, setCreateRedirect] = useState(false);
-  const [errorMsg, setError] = useState("");
+  const [, setError] = useState("");
   const [redirects, setRedirects] = useState<IRedirect[]>([]);
 
   const addRedirect = async () => {
@@ -43,16 +44,16 @@ export default function CreateRedirect() {
 
       const data = await response.json();
       setRedirects([...redirects, data]);
-    } catch (error) {
+    } catch {
       setError("Kunde inte skapa redirecten");
-      console.log(errorMsg, error);
       
     }
   };
 
   return (
     <>
-      <AddButton onClick={addRedirect}>+</AddButton>
+      <AddButton onClick={addRedirect}><AddIcon/>Skapa en ny redirect
+        </AddButton>
 
       {createRedirect && (
         <CreateWrapper>

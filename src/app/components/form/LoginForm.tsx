@@ -52,7 +52,7 @@ export default function LoginForm() {
       } else {
         setError(data.error || "Kunde inte genomföra inloggningen.");
       }
-    } catch  {
+    } catch {
       setError("Kunde inte ansluta till servern.");
     }
 

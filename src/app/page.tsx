@@ -13,7 +13,6 @@ export default function Home() {
         <LoginForm/>
       </Main>
       <Footer>
-
       </Footer>
     </Page>
   );

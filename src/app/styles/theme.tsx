@@ -8,7 +8,13 @@ export const lightTheme = {
   title: "rgb(12,23,23)",
   text: "rgb(71, 44, 44)",
   text2: "rgb(255, 244, 244)",
-  primary: "rgb(180, 166, 166)"
+  primary: "rgb(180, 166, 166)",
+  textFade: "rgba(51, 51, 51, 0.3)",
+  textSecondary: "rgb(247, 247, 247)",
+  textSecondary2: "rgb(222, 222, 222)",
+  textSecondaryFade: "rgba(247, 247, 247, 0.4)",
+  bgSecondary: "rgb(20, 20, 20)",
+  btn: "rgb(106, 30, 85)",
 };
 export const darkTheme = {
   bg: "rgb(15,15,15)",
@@ -20,5 +26,13 @@ export const darkTheme = {
   text2: "rgb(233, 233, 233)",
   bgHover: "rgb(158, 143, 143)",
   navBg: "rgb(22, 20, 21)",
-  primary: "rgb(95, 84, 91)"
+  primary: "rgb(95, 84, 91)",
+  bgFade: "rgba(60, 49, 58, 0.431)",
+  hover: "rgb(54, 41, 51)",
+  textFade: "rgba(65, 53, 64, 0.3)",
+  textSecondary: "rgb(247, 247, 247)",
+  textSecondary2: "rgb(222, 222, 222)",
+  textSecondaryFade: "rgba(247, 247, 247, 0.4)",
+  bgSecondary: "rgb(29, 26, 28) ",
+  btn: "rgb(43, 22, 37)",
 };

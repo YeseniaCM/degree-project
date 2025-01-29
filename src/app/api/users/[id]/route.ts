@@ -7,11 +7,11 @@ import {
   isValidObjectId,
 } from "@/lib/userdb";
 
-
-
-export async function GET({ params }: { params: { id: string } } 
-) {
-  const { id } = params;
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const id = (await params).id;
 
   if (!id || !isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id användare" }, { status: 400 });
@@ -46,14 +46,18 @@ export async function GET({ params }: { params: { id: string } }
   }
 }
 
-export async function PUT(req: NextRequest) {
-  const { id, ...body }: { id: string } & Partial<IUser> = await req.json(); // Read both id and body from request
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const id = (await params).id;
 
   if (!id || !isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id användare" }, { status: 400 });
   }
 
   try {
+    const body: Partial<IUser> = await req.json();
     const result = await updateUserById(id, body);
 
     if (result.matchedCount === 0) {
@@ -73,8 +77,11 @@ export async function PUT(req: NextRequest) {
   }
 }
 
-export async function DELETE(req: NextRequest) {
-  const { id }: { id: string } = await req.json();
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const id = (await params).id;
 
   if (!isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id användare" }, { status: 400 });

@@ -14,6 +14,7 @@ import {
 import CreateRedirect from "./CreateRedirect";
 import EditButton from "./EditRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
+import Link from "next/link";
 
 export default function PrintRedirects() {
   const { isLoading, redirects, errorMsg, deleteRedirect } = useRedirects();
@@ -36,36 +37,44 @@ export default function PrintRedirects() {
   return (
     <RedirectWrapper>
       <Table>
-        <Title>Redirects</Title>
-        <TitleWrapper>
-          <TitleColumns>URL</TitleColumns>
-          <TitleColumns>Redirect URL</TitleColumns>
-          <TitleColumns>Code</TitleColumns>
-        </TitleWrapper>
         <RedirectsList>
+        <Title>Redirects</Title>
           {redirects.length > 0 ? (
-            redirects.map((redirect) => (
-              <ColumnRow key={redirect._id?.toString()}>
-                <ColumnLabel>{redirect.sourceUrl}</ColumnLabel>
-                <ColumnLabel>{redirect.destinationUrl}</ColumnLabel>
-                <ColumnLabel>{redirect.httpStatusCode}</ColumnLabel>
-                <ButtonWrapper>
-                  <EditButton redirect={redirect} />
-                  <Button
-                    onClick={() => handleDelete(redirect._id?.toString() || "")}
-                  >
-                    Delete
-                  </Button>
-                </ButtonWrapper>
-              </ColumnRow>
-            ))
+            <>
+              <TitleWrapper>
+                <TitleColumns>URL</TitleColumns>
+                <TitleColumns>Redirect URL</TitleColumns>
+                <TitleColumns>Code</TitleColumns>
+              </TitleWrapper>
+              {redirects.map((redirect) => (
+                <ColumnRow key={redirect._id?.toString()}>
+                  <ColumnLabel>{redirect.sourceUrl}</ColumnLabel>
+                  <ColumnLabel>{redirect.destinationUrl}</ColumnLabel>
+                  <ColumnLabel>{redirect.httpStatusCode}</ColumnLabel>
+                  <ButtonWrapper>
+                    <EditButton redirect={redirect} />
+                    <Button
+                      onClick={() =>
+                        handleDelete(redirect._id?.toString() || "")
+                      }
+                    >
+                      Delete
+                    </Button>
+                  </ButtonWrapper>
+                </ColumnRow>
+              ))}
+              <CreateRedirect />
+            </>
           ) : (
             <MessageContainer>
-              <Message>No redirects found</Message>
+              <Message>Kunde inte hämta redirects</Message>
+
+              <Button>
+                <Link href={"/"}>Till startsidan</Link>
+              </Button>
             </MessageContainer>
           )}
         </RedirectsList>
-        <CreateRedirect />
       </Table>
     </RedirectWrapper>
   );

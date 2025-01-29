@@ -9,9 +9,9 @@ import { IRedirect } from "../../../types/IRedirect";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const { id } = await params;
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  const id = (await params).id;
 
   console.log("Mottaget id:", id);
 
@@ -39,10 +39,9 @@ export async function GET(
     };
 
     return NextResponse.json(response);
-  } catch (err) {
-    console.error("Kunde inte hämta ID:nr", err);
+  } catch {
     return NextResponse.json(
-      { error: "Fel vid hämtning av ID:nr", details: err },
+      { error: "Fel vid hämtning av ID:nr" },
       { status: 500 }
     );
   }
@@ -50,9 +49,9 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
+  const id = (await params).id;
 
   if (!isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id:nr" }, { status: 400 });
@@ -70,8 +69,7 @@ export async function PUT(
     }
 
     return NextResponse.json({ resultat, message: "Lyckad uppdatering" });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "gick inte att uppdatera" },
       { status: 500 }
@@ -81,9 +79,9 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
+  const id = (await params).id;
 
   if (!isValidObjectId(id)) {
     return NextResponse.json({ error: "Fel id:nr" }, { status: 400 });
@@ -100,10 +98,9 @@ export async function DELETE(
     }
 
     return NextResponse.json({ resultat, message: "Redirect raderad" });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { err: "gick inte att uppdatera" },
+      { error: "gick inte att uppdatera" },
       { status: 500 }
     );
   }

@@ -18,10 +18,8 @@ export function useRedirects() {
         const data = await response.json();
         setRedirects(data);
         setIsLoading(false);
-      } catch (error) {
-        setError("Kunde inte hämta redirects");
+      } catch {
         setIsLoading(false);
-        console.log(error, errorMsg);
         
       }
     };
@@ -78,8 +76,8 @@ export function useRedirects() {
       setRedirects((prevRedirects) =>
         prevRedirects.filter((redirect) => redirect._id?.toString() !== id)
       );
-    } catch (err) {
-      throw err;
+    } catch (error){
+      throw error;
     }
   };
 

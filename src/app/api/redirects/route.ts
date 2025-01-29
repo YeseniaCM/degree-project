@@ -99,10 +99,9 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: "Ogiltig åtgärd" }, { status: 400 });
-  } catch (error) {
-    console.error("Error:", error);
+  } catch {
     return NextResponse.json(
-      { error: "Fel vid skapande av redirect", details: error },
+      { error: "Fel vid skapande av redirect"},
       { status: 500 }
     );
   }

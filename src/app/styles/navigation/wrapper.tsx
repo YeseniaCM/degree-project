@@ -5,10 +5,10 @@ import Link from "next/link";
 
 export const Navbar = styled.div<{ $isOpen: boolean }>`
   width: ${({ $isOpen }) =>
-    !$isOpen ? `auto` : "250px"}; /* Update sidebar width */
+    !$isOpen ? `auto` : "250px"}; 
   background: ${({ theme }) => theme.navBg};
   height: 100vh;
-  padding: 16px; /* Adjust padding based on your design */
+  padding: 16px; 
   position: relative;
 `;
 
@@ -82,7 +82,7 @@ export const NavDivider = styled.div`
   margin: ${v.lgSpacing} 0;
 `;
 
-export const NavLinkContainer = styled.div`
+export const NavLinkContainer = styled.div<{ $isActive?: boolean }>`
   background: ${({ theme, $isActive }) =>
     !$isActive ? `transparent` : theme.bg3};
   border-radius: ${v.borderRadius};
@@ -125,10 +125,10 @@ export const NavTheme = styled.div`
 export const SunIcon = styled(TbSunFilled)`
   cursor: pointer;
   font-size: 25px;
-  color: ${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.bg3 || "#fff"};
 `;
 export const MoonIcon = styled(TbMoonFilled)`
   cursor: pointer;
   font-size: 25px;
-  color: ${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.bg3 || "#fff"};
 `;

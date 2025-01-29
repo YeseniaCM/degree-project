@@ -88,8 +88,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: "Ogiltig åtgärd" }, { status: 400 });
-  } catch (err) {
-    console.error("Fel vid hantering av POST-förfrågan:", err);
+  } catch {
     return NextResponse.json(
       { error: "Kunde inte bearbeta förfrågan" },
       { status: 500 }

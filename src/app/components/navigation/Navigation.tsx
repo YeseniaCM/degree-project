@@ -9,18 +9,18 @@ import {
   NavLogo,
   NavbarButton,
   SunIcon,
-  Navbar
+  Navbar,
 } from "@/app/styles/navigation/wrapper";
-import { JSX, useContext, useState } from "react";
+import { JSX, useState } from "react";
 import { AiOutlineHome, AiOutlineLeft } from "react-icons/ai";
 import { MdLogin, MdLogout } from "react-icons/md";
-import { ThemeContext } from "styled-components";
 import { usePathname } from "next/navigation";
 import { TiArrowRepeat } from "react-icons/ti";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export const Navigation = () => {
   // const searchRef = useRef(null) || '';
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -36,28 +36,20 @@ export const Navigation = () => {
     {
       label: "Home",
       icon: <AiOutlineHome />,
-      to: "/"
+      to: "/",
     },
     {
       label: "Redirects",
       icon: <TiArrowRepeat />,
-      to: "/redirect"
+      to: "/redirect",
     },
   ];
 
-  // const secondaryLinksArray: { label: string; icon: JSX.Element }[] = [
-  //   {
-  //     label: "Logout",
-  //     icon: <MdLogout />
-  //   }, 
-  //   {
-  //     label: "Login",
-  //     icon: <MdLogin />
-  //   }
-  // ];
-
   function handleThemeChange() {
-    console.log("Current theme before toggle:", theme);
+    if (!setTheme) {
+      console.error("setTheme is undefined");
+      return;
+    }
     setTheme(theme === "dark" ? "light" : "dark");
   }
 
@@ -111,13 +103,13 @@ export const Navigation = () => {
         ))}
         <NavDivider />
         <NavLinkContainer>
-        <NavLink
-            href={isLoggedIn ? "/" : "/login"} // Omdirigera till /login om ej inloggad
+          <NavLink
+            href={isLoggedIn ? "/" : "/login"}
             style={!sidebarOpen ? { width: `fit-content` } : {}}
             onClick={() => {
               if (isLoggedIn) {
                 console.log("Loggar ut...");
-                setIsLoggedIn(false); // Logga ut användaren
+                setIsLoggedIn(false);
               }
             }}
           >

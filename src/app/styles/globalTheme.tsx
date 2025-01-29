@@ -1,6 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+ *, *::before, *::after {
+      margin: 0;
+      box-sizing: border-box;
+  }
+
+  body {
+      background: ${({ theme }) => theme.bg};   
+      color: ${({ theme }) => theme.text};
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.6px;
+  }
+  a {
+    color: ${({ theme }) => theme.text};
+        text-decoration: none;
+  }
 
 
   @media (prefers-color-scheme: dark) {
@@ -16,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
       --foreground: ${({ theme }) => theme.text};
     }
   }
-
+  /*
   html,
   body {
     max-width: 100vw;
@@ -33,13 +48,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  button a{
-    color: #ffffff;
-  }
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+  } */
 `;
