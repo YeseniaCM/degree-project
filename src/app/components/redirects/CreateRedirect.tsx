@@ -1,9 +1,16 @@
 import { Input } from "@/app/styles/form/wrapper";
-import { AddButton, CreateWrapper, CreateContainer, EditRedirectInput, CreateRedirectWrapper } from "@/app/styles/redirects/createRedirects/wrapper";
-import { AddIcon, Button } from "@/app/styles/redirects/PrintRedirects/wrapper";
+import {
+  AddButton,
+  CreateWrapper,
+  CreateContainer,
+  EditRedirectInput,
+  CreateRedirectWrapper,
+} from "@/app/styles/redirects/createRedirects/wrapper";
+import { Button } from "@/app/styles/redirects/PrintRedirects/wrapper";
 import { H1 } from "@/app/styles/stylePage";
 import { IRedirect } from "@/app/types/IRedirect";
 import { useState } from "react";
+import { IoMdAdd } from "react-icons/io";
 
 export default function CreateRedirect() {
   const [sourceUrl, setSourceUrl] = useState("");
@@ -25,16 +32,16 @@ export default function CreateRedirect() {
       action: "createRedirect",
       sourceUrl,
       destinationUrl,
-      httpStatusCode
+      httpStatusCode,
     };
 
     try {
       const response = await fetch("/api/redirects", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newRedirect)
+        body: JSON.stringify(newRedirect),
       });
 
       if (!response.ok) {
@@ -43,16 +50,19 @@ export default function CreateRedirect() {
 
       const data = await response.json();
       setRedirects([...redirects, data]);
+      setCreateRedirect(false);
+      window.location.reload();
     } catch {
       setErrorMsg("Kunde inte skapa redirecten");
-      
+      setCreateRedirect(false);
     }
   };
 
   return (
     <>
-      <AddButton onClick={addRedirect}><AddIcon/>Skapa en ny redirect
-        </AddButton>
+      <AddButton onClick={addRedirect}>
+        Skapa redirect <IoMdAdd />
+      </AddButton>
 
       {createRedirect && (
         <CreateWrapper>

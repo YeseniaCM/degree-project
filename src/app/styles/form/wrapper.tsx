@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.navBg};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
   margin: auto;
@@ -15,7 +15,6 @@ export const FormTitle = styled.h1`
 
 export const FormDok = styled.form`
   width: 100%;
-  background: ${({ theme }) => theme.bg1};
   border-radius: ${v.borderRadius};
   padding: ${v.mdSpacing};
 `;
@@ -36,8 +35,6 @@ export const Label = styled.label`
   margin-left: 4px;
   margin-bottom: calc(${v.smSpacing} / 4);
   margin-top: ${v.mdSpacing};
-  /* border: 1px solid #ccc;
-  border-radius: 4px; */
 `;
 
 export const Input = styled.input`
@@ -52,7 +49,7 @@ export const Input = styled.input`
 export const SubmitButton = styled.button`
    ${btnReset};
     width: 100%;
-    background: ${({ theme }) => theme.bg3};
+    background: ${({ theme }) => theme.btn};
     color: ${({ theme }) => theme.text2};
     padding: ${v.smSpacing};
     display: flex;

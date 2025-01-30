@@ -1,6 +1,5 @@
 import { MessageContainer, Message } from "@/app/styles/ErrorMessage/wrapper";
 import {
-  RedirectWrapper,
   Table,
   Title,
   TitleWrapper,
@@ -10,11 +9,13 @@ import {
   ColumnLabel,
   ButtonWrapper,
   Button,
+  HeadWrapper,
 } from "@/app/styles/redirects/PrintRedirects/wrapper";
 import CreateRedirect from "./CreateRedirect";
 import EditButton from "./EditRedirect";
 import { useRedirects } from "@/app/hooks/useRedirects";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function PrintRedirects() {
   const { isLoading, redirects, errorMsg, deleteRedirect } = useRedirects();
@@ -35,10 +36,15 @@ export default function PrintRedirects() {
   }
 
   return (
-    <RedirectWrapper>
+    <>
+      <Suspense />
+
       <Table>
         <RedirectsList>
-        <Title>Redirects</Title>
+          <HeadWrapper>
+            <Title>Redirects</Title>
+            <CreateRedirect />
+          </HeadWrapper>
           {redirects.length > 0 ? (
             <>
               <TitleWrapper>
@@ -46,6 +52,7 @@ export default function PrintRedirects() {
                 <TitleColumns>Redirect URL</TitleColumns>
                 <TitleColumns>Code</TitleColumns>
               </TitleWrapper>
+
               {redirects.map((redirect) => (
                 <ColumnRow key={redirect._id?.toString()}>
                   <ColumnLabel>{redirect.sourceUrl}</ColumnLabel>
@@ -63,7 +70,6 @@ export default function PrintRedirects() {
                   </ButtonWrapper>
                 </ColumnRow>
               ))}
-              <CreateRedirect />
             </>
           ) : (
             <MessageContainer>
@@ -76,6 +82,6 @@ export default function PrintRedirects() {
           )}
         </RedirectsList>
       </Table>
-    </RedirectWrapper>
+    </>
   );
 }

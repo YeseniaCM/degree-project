@@ -1,22 +1,26 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
- *, *::before, *::after {
-      margin: 0;
-      box-sizing: border-box;
+  *, *::before, *::after {
+    margin: 0;
+    box-sizing: border-box;
   }
 
   body {
-      background: ${({ theme }) => theme.bg};   
-      color: ${({ theme }) => theme.text};
-      font-family: 'Roboto', sans-serif;
-      letter-spacing: 0.6px;
-  }
-  a {
+    background: ${({ theme }) => theme.bg};   
     color: ${({ theme }) => theme.text};
-        text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.6px;
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
   }
 
+  a {
+    color: ${({ theme }) => theme.text};
+    text-decoration: none;
+  }
 
   @media (prefers-color-scheme: dark) {
     :root {
@@ -31,26 +35,8 @@ export const GlobalStyle = createGlobalStyle`
       --foreground: ${({ theme }) => theme.text};
     }
   }
-  /*
-  html,
-  body {
-    max-width: 100vw;
-    overflow-x: hidden;
-    color: var(--foreground);
-    background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  html, body {
+    overflow-x: hidden;
   }
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
-  } */
 `;
