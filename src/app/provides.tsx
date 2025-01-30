@@ -3,8 +3,8 @@ import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles/globalTheme";
 import { useState } from "react";
 import { lightTheme, darkTheme } from "./styles/theme";
-import { Navigation } from "./components/navigation/Navigation";
 import { ThemeContext } from "@/contexts/ThemeContext";
+import Navigation from "./components/navigation/Navigation";
 
 const StyledComponentsRegistry = styled.div`
   display: flex;

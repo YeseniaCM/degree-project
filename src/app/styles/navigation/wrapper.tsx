@@ -4,12 +4,12 @@ import { btnReset, v } from "../variables";
 import Link from "next/link";
 
 export const Navbar = styled.div<{ $isOpen: boolean }>`
-  width: ${({ $isOpen }) =>
-    !$isOpen ? `auto` : "250px"}; 
+  width: ${({ $isOpen }) => (!$isOpen ? `auto` : "250px")};
   background: ${({ theme }) => theme.navBg};
   height: 100vh;
-  padding: 16px; 
+  padding: 16px;
   position: relative;
+  font-display: swap;
 `;
 
 export const NavbarButton = styled.button<{ $isOpen: boolean }>`
@@ -20,7 +20,7 @@ export const NavbarButton = styled.button<{ $isOpen: boolean }>`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.navBg};
+  background: ${({ theme }) => theme.bg3};
   box-shadow: 0 0 4px ${({ theme }) => theme.bg},
     0 0 7px ${({ theme }) => theme.bg};
   display: flex;

@@ -18,13 +18,14 @@ import { usePathname } from "next/navigation";
 import { TiArrowRepeat } from "react-icons/ti";
 import { useTheme } from "@/contexts/ThemeContext";
 
-export const Navigation = () => {
+export default function Navigation() {
   // const searchRef = useRef(null) || '';
   const { theme, setTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   type Link = {
     label: string;
@@ -64,15 +65,16 @@ export const Navigation = () => {
 
   return (
     <>
-      <Navbar $isOpen={sidebarOpen}>
-        <NavbarButton
-          $isOpen={sidebarOpen}
-          onClick={() => setSidebarOpen((prev) => !prev)}
-        >
-          <AiOutlineLeft />
-        </NavbarButton>
-        <NavLogo></NavLogo>
-        {/* <NavSearch
+      {!isHomePage && (
+        <Navbar $isOpen={sidebarOpen}>
+          <NavbarButton
+            $isOpen={sidebarOpen}
+            onClick={() => setSidebarOpen((prev) => !prev)}
+          >
+            <AiOutlineLeft />
+          </NavbarButton>
+          <NavLogo></NavLogo>
+          {/* <NavSearch
         onClick={searchClickHandler}
         style={!sidebarOpen ? { width: `fit-content` } : {}}
       >
@@ -86,45 +88,48 @@ export const Navigation = () => {
         />
       </NavSearch>
       <NavDivider /> */}
-        {menuItems.map(({ icon, label, to }: Link) => (
-          <NavLinkContainer key={label} $isActive={pathname === to}>
+          {menuItems.map(({ icon, label, to }: Link) => (
+            <NavLinkContainer key={label} $isActive={pathname === to}>
+              <NavLink
+                href={to}
+                style={!sidebarOpen ? { width: `fit-content` } : {}}
+              >
+                <NavLinkIcon>{icon}</NavLinkIcon>
+                {sidebarOpen && (
+                  <>
+                    <NavLinkLabel>{label}</NavLinkLabel>
+                  </>
+                )}
+              </NavLink>
+            </NavLinkContainer>
+          ))}
+          <NavDivider />
+          <NavLinkContainer>
             <NavLink
-              href={to}
+              href={isLoggedIn ? "/" : "/login"}
               style={!sidebarOpen ? { width: `fit-content` } : {}}
+              onClick={() => {
+                if (isLoggedIn) {
+                  console.log("Loggar ut...");
+                  setIsLoggedIn(false);
+                }
+              }}
             >
-              <NavLinkIcon>{icon}</NavLinkIcon>
+              <NavLinkIcon>
+                {isLoggedIn ? <MdLogout /> : <MdLogin />}
+              </NavLinkIcon>
               {sidebarOpen && (
-                <>
-                  <NavLinkLabel>{label}</NavLinkLabel>
-                </>
+                <NavLinkLabel>{isLoggedIn ? "Logout" : "Login"}</NavLinkLabel>
               )}
             </NavLink>
           </NavLinkContainer>
-        ))}
-        <NavDivider />
-        <NavLinkContainer>
-          <NavLink
-            href={isLoggedIn ? "/" : "/login"}
-            style={!sidebarOpen ? { width: `fit-content` } : {}}
-            onClick={() => {
-              if (isLoggedIn) {
-                console.log("Loggar ut...");
-                setIsLoggedIn(false);
-              }
-            }}
-          >
-            <NavLinkIcon>{isLoggedIn ? <MdLogout /> : <MdLogin />}</NavLinkIcon>
-            {sidebarOpen && (
-              <NavLinkLabel>{isLoggedIn ? "Logout" : "Login"}</NavLinkLabel>
-            )}
-          </NavLink>
-        </NavLinkContainer>
-        <NavDivider />
-        <NavTheme>
-          {theme === "dark" && <SunIcon onClick={handleThemeChange} />}
-          {theme === "light" && <MoonIcon onClick={handleThemeChange} />}
-        </NavTheme>
-      </Navbar>
+          <NavDivider />
+          <NavTheme>
+            {theme === "dark" && <SunIcon onClick={handleThemeChange} />}
+            {theme === "light" && <MoonIcon onClick={handleThemeChange} />}
+          </NavTheme>
+        </Navbar>
+      )}
     </>
   );
-};
+}
