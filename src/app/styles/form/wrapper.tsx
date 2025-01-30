@@ -68,5 +68,4 @@ export const SubmitButton = styled.button`
 
 export const FormContent = styled.p `
 margin-top: ${v.smSpacing};
-
-`
+`;

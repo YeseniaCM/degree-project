@@ -5,7 +5,6 @@ import { H1 } from "@/app/styles/stylePage";
 import { IRedirect } from "@/app/types/IRedirect";
 import { useState } from "react";
 
-
 export default function CreateRedirect() {
   const [sourceUrl, setSourceUrl] = useState("");
   const [destinationUrl, setDestinationUrl] = useState("");
