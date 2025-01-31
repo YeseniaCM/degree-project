@@ -129,7 +129,6 @@ export const NavLink = styled(Link)<{ $isOpen: boolean }>`
   padding: calc(${v.smSpacing} - 2px) 0;
   transition: opacity 0.3s ease, pointer-events 0.3s ease;
 
-
   @media screen and (max-width: 768px) {
     pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
     opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
