@@ -10,6 +10,7 @@ import {
   ButtonWrapper,
   Button,
   HeadWrapper,
+  ColumnLabelWrapper,
 } from "@/app/styles/redirects/PrintRedirects/wrapper";
 import CreateRedirect from "./CreateRedirect";
 import EditButton from "./EditRedirect";
@@ -55,9 +56,11 @@ export default function PrintRedirects() {
 
               {redirects.map((redirect) => (
                 <ColumnRow key={redirect._id?.toString()}>
+                  <ColumnLabelWrapper >
                   <ColumnLabel>{redirect.sourceUrl}</ColumnLabel>
                   <ColumnLabel>{redirect.destinationUrl}</ColumnLabel>
                   <ColumnLabel>{redirect.httpStatusCode}</ColumnLabel>
+                  </ColumnLabelWrapper>
                   <ButtonWrapper>
                     <EditButton redirect={redirect} />
                     <Button
@@ -65,7 +68,7 @@ export default function PrintRedirects() {
                         handleDelete(redirect._id?.toString() || "")
                       }
                     >
-                      Delete
+                      Ta bort
                     </Button>
                   </ButtonWrapper>
                 </ColumnRow>

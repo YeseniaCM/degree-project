@@ -11,6 +11,7 @@ export const HeadWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: ${v.mdSpacing};
 `;
 
 export const Table = styled.div`
@@ -18,6 +19,10 @@ export const Table = styled.div`
   background: ${({ theme }) => theme.navBg};
   border-radius: ${v.borderRadius};
   padding: ${v.lgSpacing};
+  
+  @media screen and (max-width: 768px){
+     display: flex;
+    }
 `;
 
 export const TitleWrapper = styled.div`
@@ -25,6 +30,10 @@ export const TitleWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-bottom: ${v.smSpacing};
   border-bottom: 1px solid ${({ theme }) => theme.hover};
+  @media screen and (max-width: 768px){
+     display: flex;
+     justify-content: space-between;
+    }
 `;
 
 export const TitleColumns = styled.h3`
@@ -37,28 +46,60 @@ export const RedirectsList = styled.div`
   border-radius: ${v.borderRadius};
   width: 100%;
   font-size: 14px;
+  @media screen and (max-width: 768px){
+     display: flex;
+     flex-direction: column;
+    }
 `;
 
 export const ColumnRow = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+   display: grid;
+  grid-template-columns: 3fr 1fr;
   align-items: center;
   border-radius: 2px;
   border-bottom: 1px solid ${({ theme }) => theme.primary};
   height: 45px;
+  @media screen and (max-width: 768px){
+     display: flex;
+     flex-direction: column;
+     height: auto;
+     align-items: normal;
+    }
+`;
+
+export const ColumnLabelWrapper = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0;
+  margin-bottom: calc(${v.smSpacing} / 4);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: flex-start;
+  justify-content: space-between;
+  @media screen and (max-width: 768px){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const ColumnLabel = styled.p`
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 4px;
-  margin-bottom: calc(${v.smSpacing} / 4);
+  margin-bottom: ${v.smSpacing};
+  margin-left: 6px;
+  @media screen and (max-width: 768px){
+    display: flex;
+    margin-bottom: ${v.smSpacing};
+  }
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media screen and (max-width: 768px){
+    margin-bottom: ${v.smSpacing};
+    justify-content: flex-end;
+  }
 `;
 
 export const Button = styled.button<{ $isHidden?: boolean }>`
@@ -81,6 +122,10 @@ export const Button = styled.button<{ $isHidden?: boolean }>`
   a {
     color: ${({ theme }) => theme.text};
     text-decoration: none;
+  }
+  @media screen and (max-width: 769px) {
+    width: 25%;
+    margin-left: 15px;
   }
 `;
 
@@ -146,9 +191,9 @@ export const EditWrapper = styled.div`
 export const EditContainer = styled.div`
   background: ${({ theme }) => theme.navBg};
   border-radius: 8px;
+  width: 360px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 24px;
-  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 16px;

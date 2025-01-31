@@ -90,5 +90,5 @@ export default function EditButton({ redirect }: IEditButtonProps) {
     );
   }
 
-  return <Button onClick={() => setIsEditing(true)}>Edit</Button>;
+  return <Button onClick={() => setIsEditing(true)}>Redigera</Button>;
 }
