@@ -18,7 +18,7 @@ Content-Type: application/json
 
 ### 
 
-PUT http://localhost:3000/api/redirects/677965d50764eec5b4412c2d
+PUT http://localhost:3000/api/redirects/679c74143bc7590364069e68
 Content-Type: application/json
 
 {
@@ -26,11 +26,11 @@ Content-Type: application/json
 }
 ### 
 
-DELETE http://localhost:3000/api/redirects/677965d50764eec5b4412c2d
+DELETE http://localhost:3000/api/redirects/679bdced7e97fc98a6574307
 Content-Type: application/json
 
 {
-"_id": "677965d50764eec5b4412c2d"
+"_id": "679c74143bc7590364069e68"
 }
 
 // User test

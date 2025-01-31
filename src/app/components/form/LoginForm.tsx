@@ -49,7 +49,7 @@ export default function LoginForm() {
 
       if (res.ok) {
         console.log("Lyckad inloggning:", data);
-        router.push("/");
+        router.push("/redirect");
       } else {
         setError(data.error || "Kunde inte genomföra inloggningen.");
       }

@@ -23,6 +23,7 @@ export default function PrintRedirects() {
   const handleDelete = async (id: string) => {
     try {
       await deleteRedirect(id);
+      window.location.reload();
     } catch (error) {
       console.log("Error deleting redirect", error);
     }

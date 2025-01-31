@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
       const statusCode = parseInt(httpStatusCode, 10);
 
       const newRedirect: IRedirect = {
-        _id: new ObjectId().toString(),
+        _id: new ObjectId(),
         sourceUrl,
         destinationUrl,
         httpStatusCode: statusCode,
