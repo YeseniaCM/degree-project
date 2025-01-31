@@ -17,6 +17,7 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { TiArrowRepeat } from "react-icons/ti";
 import { useTheme } from "@/contexts/ThemeContext";
+import router from "next/router";
 
 export default function Navigation() {
   // const searchRef = useRef(null) || '';
@@ -35,42 +36,43 @@ export default function Navigation() {
 
   const menuItems: Link[] = [
     {
-      label: "Home",
+      label: "Hem",
       icon: <AiOutlineHome />,
       to: "/",
     },
     {
       label: "Redirects",
       icon: <TiArrowRepeat />,
-      to: "/redirect",
-    },
+      to: "/redirect"
+    }
   ];
 
   function handleThemeChange() {
-    if (!setTheme) {
-      console.error("setTheme is undefined");
-      return;
-    }
     setTheme(theme === "dark" ? "light" : "dark");
   }
 
-  // const searchClickHandler = () => {
-  //   if (!sidebarOpen) {
-  //     setSidebarOpen(true);
-  //     searchRef.current?.focus();
-  //   } else {
-  //     // search functionality
-  //   }
-  // };
+  const handleLoginLogout = () => {
+    if (isLoggedIn) {
+      setIsLoggedIn(false);
+      router.push("/login");
+    } else {
+      setIsLoggedIn(true);
+    }
+  };
+
+  const handleSideNav = () => {
+    setSidebarOpen((prev) => !prev);
+  };
+
+  const handleLinkClick = () => {
+    setSidebarOpen(false);
+  };
 
   return (
     <>
       {!isHomePage && (
         <Navbar $isOpen={sidebarOpen}>
-          <NavbarButton
-            $isOpen={sidebarOpen}
-            onClick={() => setSidebarOpen((prev) => !prev)}
-          >
+          <NavbarButton $isOpen={sidebarOpen} onClick={handleSideNav}>
             <AiOutlineLeft />
           </NavbarButton>
           <NavLogo></NavLogo>
@@ -91,10 +93,12 @@ export default function Navigation() {
           {menuItems.map(({ icon, label, to }: Link) => (
             <NavLinkContainer key={label} $isActive={pathname === to}>
               <NavLink
-                href={to}
-                style={!sidebarOpen ? { width: `fit-content` } : {}}
-              >
-                <NavLinkIcon>{icon}</NavLinkIcon>
+        $isOpen={sidebarOpen}
+        href={to}
+        onClick={handleLinkClick}
+        style={!sidebarOpen ? { width: "fit-content" } : {}}
+      >
+                <NavLinkIcon $isOpen={sidebarOpen}>{icon}</NavLinkIcon>
                 {sidebarOpen && (
                   <>
                     <NavLinkLabel>{label}</NavLinkLabel>
@@ -106,30 +110,29 @@ export default function Navigation() {
           <NavDivider />
           <NavLinkContainer>
             <NavLink
+              $isOpen={sidebarOpen}
               href={isLoggedIn ? "/" : "/login"}
-              style={!sidebarOpen ? { width: `fit-content` } : {}}
               onClick={() => {
-                if (isLoggedIn) {
-                  console.log("Loggar ut...");
-                  setIsLoggedIn(false);
-                }
+                handleLoginLogout();
+                setSidebarOpen(false);
               }}
             >
-              <NavLinkIcon>
+              <NavLinkIcon $isOpen={sidebarOpen}>
                 {isLoggedIn ? <MdLogout /> : <MdLogin />}
               </NavLinkIcon>
               {sidebarOpen && (
-                <NavLinkLabel>{isLoggedIn ? "Logout" : "Login"}</NavLinkLabel>
+                <NavLinkLabel>{isLoggedIn ? "Logga ut" : "Logga in"}</NavLinkLabel>
               )}
             </NavLink>
           </NavLinkContainer>
           <NavDivider />
-          <NavTheme>
+          <NavTheme $isOpen={sidebarOpen}>
             {theme === "dark" && <SunIcon onClick={handleThemeChange} />}
             {theme === "light" && <MoonIcon onClick={handleThemeChange} />}
           </NavTheme>
         </Navbar>
       )}
     </>
+   
   );
 }

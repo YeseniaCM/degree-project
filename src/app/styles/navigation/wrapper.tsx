@@ -4,12 +4,27 @@ import { btnReset, v } from "../variables";
 import Link from "next/link";
 
 export const Navbar = styled.div<{ $isOpen: boolean }>`
-  width: ${({ $isOpen }) => (!$isOpen ? `auto` : "250px")};
+  width: ${({ $isOpen }) => (!$isOpen ? `auto` : "200px")};
   background: ${({ theme }) => theme.navBg};
   height: 100vh;
   padding: 16px;
   position: relative;
-  font-display: swap;
+  transition: width 0.4s ease;
+
+  @media screen and (max-width: 768px) {
+    width: ${({ $isOpen }) => (!$isOpen ? `0` : "100%")};
+    position: fixed;
+    height: 100vh;
+    padding: 20px 0 0 0;
+
+    .menu-content {
+      display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
+    }
+  }
+
+  .menu-content {
+    display: block;
+  }
 `;
 
 export const NavbarButton = styled.button<{ $isOpen: boolean }>`
@@ -28,7 +43,13 @@ export const NavbarButton = styled.button<{ $isOpen: boolean }>`
   justify-content: center;
   cursor: pointer;
 
+  @media screen and (max-width: 768px) {
+    right: ${({ $isOpen }) => ($isOpen ? `14px` : `-36px`)};
+    top: 5px;
+  }
+
   transform: ${({ $isOpen }) => (!$isOpen ? `rotate(180deg)` : `initial`)};
+  transition: transform 0.3s ease;
   &:hover {
     background: ${({ theme }) => theme.bgHover};
   }
@@ -46,34 +67,34 @@ export const NavLogo = styled.div`
   margin-bottom: ${v.lgSpacing};
 `;
 
-export const NavSearch = styled.div`
-  background: ${({ theme }) => theme.bgAlpha};
-  border: 1px solid ${({ theme }) => theme.bg3};
-  border-radius: ${v.borderRadius};
-  input {
-    padding: 0 ${v.smSpacing};
-    font-family: inherit;
-    letter-spacing: inherit;
-    font-size: 16px;
-    width: 100%;
-    outline: none;
-    border: none;
-    color: inherit;
-    background: transparent;
-  }
-  display: flex;
-`;
+// export const NavSearch = styled.div`
+//   background: ${({ theme }) => theme.bgAlpha};
+//   border: 1px solid ${({ theme }) => theme.bg3};
+//   border-radius: ${v.borderRadius};
+//   input {
+//     padding: 0 ${v.smSpacing};
+//     font-family: inherit;
+//     letter-spacing: inherit;
+//     font-size: 16px;
+//     width: 100%;
+//     outline: none;
+//     border: none;
+//     color: inherit;
+//     background: transparent;
+//   }
+//   display: flex;
+// `;
 
-export const NavSearchIcon = styled.button`
-  ${btnReset};
-  padding: calc(${v.mdSpacing} - 2px) ${v.mdSpacing};
-  display: flex;
-  cursor: pointer;
+// export const NavSearchIcon = styled.button`
+//   ${btnReset};
+//   padding: calc(${v.mdSpacing} - 2px) ${v.mdSpacing};
+//   display: flex;
+//   cursor: pointer;
 
-  svg {
-    font-size: 20px;
-  }
-`;
+//   svg {
+//     font-size: 20px;
+//   }
+// `;
 
 export const NavDivider = styled.div`
   height: 1px;
@@ -92,18 +113,29 @@ export const NavLinkContainer = styled.div<{ $isActive?: boolean }>`
     background-color: ${({ theme }) => theme.bgHover};
     border-radius: 2px;
   }
+
+  @media screen and (max-width: 768px) {
+    margin: 20px auto;
+    width: 95%;
+  }
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(Link)<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   font-size: 16px;
   padding: calc(${v.smSpacing} - 2px) 0;
+  transition: opacity 0.3s ease, pointer-events 0.3s ease;
+
+  @media screen and (max-width: 768px) {
+    pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
+    opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  }
 `;
 
-export const NavLinkIcon = styled.div`
+export const NavLinkIcon = styled.div<{ $isOpen: boolean }>`
   padding: ${v.smSpacing} ${v.mdSpacing};
   display: flex;
 
@@ -116,11 +148,16 @@ export const NavLinkLabel = styled.span`
   margin-left: ${v.smSpacing};
 `;
 
-export const NavTheme = styled.div`
+export const NavTheme = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   bottom: 10px;
   left: 26px;
   font-size: 16px;
+
+  @media screen and (max-width: 768px) {
+    pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
+    opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  }
 `;
 export const SunIcon = styled(TbSunFilled)`
   cursor: pointer;
