@@ -17,7 +17,8 @@ export async function createRedirect(redirect: IRedirect) {
 export async function getRedirectById(id: string) {
   const client = await clientPromise;
   const db = client.db("redirects");
-  return db.collection("redirects").findOne({ _id: new ObjectId(id) });
+  const objectId = new ObjectId(id); 
+  return db.collection("redirects").findOne({ _id: objectId });
 }
 
 export function isValidObjectId(id: string): boolean {
@@ -30,9 +31,10 @@ export async function updateRedirectById(
 ) {
   const client = await clientPromise;
   const db = client.db("redirects");
+  const objectId = new ObjectId(id);
   return db
     .collection("redirects")
-    .updateOne({ _id: new ObjectId(id) }, { $set: updateData });
+    .updateOne({ _id: objectId }, { $set: updateData });
 }
 
 export async function getRedriectByUrl(
@@ -53,5 +55,6 @@ export async function getRedriectByUrl(
 export async function deleteRedirectById(id: string) {
   const client = await clientPromise;
   const db = client.db("redirects");
-  return db.collection("redirects").deleteOne({ _id: new ObjectId(id) });
+  const objectId = new ObjectId(id); 
+  return db.collection("redirects").deleteOne({ _id:objectId });
 }

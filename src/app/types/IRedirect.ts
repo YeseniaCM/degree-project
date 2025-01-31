@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 export interface IRedirect {
-  _id?: string;
+  _id?: ObjectId;
   sourceUrl: string;
   destinationUrl: string;
   httpStatusCode: number;
